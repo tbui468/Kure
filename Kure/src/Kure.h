@@ -4,6 +4,7 @@
 
 
 #include "Kure/Application.h"
+#include "Kure/Log.h"
 
 //-------entry point-------------
 #include "Kure/EntryPoint.h"
