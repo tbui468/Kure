@@ -1,3 +1,5 @@
+#include "krpch.h"
+
 #include "Application.h"
 
 #include "Kure/Events/ApplicationEvent.h"

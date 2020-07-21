@@ -1,6 +1,5 @@
 #pragma once
 
-#include <memory>
 
 #include "Core.h" //needed for KURE_API
 #include "spdlog/spdlog.h"

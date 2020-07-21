@@ -2,8 +2,6 @@
 
 #include "Kure/Core.h"
 
-#include <string>
-#include <functional>
 
 namespace Kure {
 

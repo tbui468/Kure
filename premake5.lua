@@ -18,6 +18,9 @@ project "Kure"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "krpch.h"
+	pchsource "Kure/src/krpch.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",
