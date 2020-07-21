@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Core.h"
+#include "Core.h" //need this for KURE_API (which exports the class)
+#include "Events/Event.h"
 
 namespace Kure {
 

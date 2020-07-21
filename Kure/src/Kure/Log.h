@@ -2,8 +2,9 @@
 
 #include <memory>
 
-#include "Core.h"
+#include "Core.h" //needed for KURE_API
 #include "spdlog/spdlog.h"
+#include "spdlog/fmt/ostr.h" //output stream operator for spdlog
 
 namespace Kure {
 

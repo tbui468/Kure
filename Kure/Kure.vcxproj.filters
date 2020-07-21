@@ -4,6 +4,9 @@
     <Filter Include="Kure">
       <UniqueIdentifier>{BC30887C-A867-890D-5154-6F103D6A050F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Kure\Events">
+      <UniqueIdentifier>{203140B7-8CE6-B8AC-15DB-B283818FAFB0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Kure.h" />
@@ -15,6 +18,18 @@
     </ClInclude>
     <ClInclude Include="src\Kure\EntryPoint.h">
       <Filter>Kure</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Kure\Events\ApplicationEvent.h">
+      <Filter>Kure\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Kure\Events\Event.h">
+      <Filter>Kure\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Kure\Events\KeyEvent.h">
+      <Filter>Kure\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Kure\Events\MouseEvent.h">
+      <Filter>Kure\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Log.h">
       <Filter>Kure</Filter>
