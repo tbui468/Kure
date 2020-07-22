@@ -35,6 +35,8 @@
       <Filter>Kure</Filter>
     </ClInclude>
     <ClInclude Include="src\krpch.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
+    <ClInclude Include="src\Kure\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Kure\Application.cpp">
@@ -44,5 +46,6 @@
       <Filter>Kure</Filter>
     </ClCompile>
     <ClCompile Include="src\krpch.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
 </Project>

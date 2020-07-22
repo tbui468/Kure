@@ -10,6 +10,13 @@ workspace "Kure"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "Kure/vendor/GLFW/include"
+
+--this includes the premake5 file in glfw
+--eg copy and pasted into this premake5 file
+include "Kure/vendor/GLFW"
+
 project "Kure"
 	location "Kure"
 	kind "SharedLib"
@@ -30,7 +37,14 @@ project "Kure"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"

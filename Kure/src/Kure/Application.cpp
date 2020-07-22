@@ -5,7 +5,6 @@
 #include "Kure/Events/ApplicationEvent.h"
 #include "Kure/Events/MouseEvent.h"
 #include "Kure/Events/KeyEvent.h"
-#include "Kure/Log.h"
 
 namespace Kure {
 	Application::Application() {
