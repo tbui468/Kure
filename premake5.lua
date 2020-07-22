@@ -65,7 +65,11 @@ project "Kure"
 
 
 	filter "configurations.Debug"
-		defines "KR_DEBUG"
+		defines 
+		{
+			"KR_DEBUG",
+			"KR_ENABLE_ASSERTS"
+		}
 		symbols "On"
 
 	filter "configurations.Debug"
@@ -113,7 +117,12 @@ project "Sandbox"
 
 
 	filter "configurations.Debug"
-		defines "KR_DEBUG"
+		defines 
+		{
+			"KR_DEBUG",
+			"KR_ENABLE_ASSERTS"
+		}
+
 		symbols "On"
 
 	filter "configurations.Debug"

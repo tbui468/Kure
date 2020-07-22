@@ -144,17 +144,17 @@
     <ClInclude Include="src\Kure\Events\KeyEvent.h" />
     <ClInclude Include="src\Kure\Events\MouseEvent.h" />
     <ClInclude Include="src\Kure\Log.h" />
-    <ClInclude Include="src\krpch.h" />
     <ClInclude Include="src\Kure\Window.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
+    <ClInclude Include="src\krpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Kure\Application.cpp" />
     <ClCompile Include="src\Kure\Log.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\krpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">

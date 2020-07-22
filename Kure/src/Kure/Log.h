@@ -22,6 +22,7 @@ namespace Kure {
 
 }
 
+//assert definitions are in Core.h
 //core log macros
 #define KR_CORE_TRACE(...)   ::Kure::Log::GetCoreLogger()->trace(__VA_ARGS__)
 #define KR_CORE_INFO(...)    ::Kure::Log::GetCoreLogger()->info(__VA_ARGS__)
