@@ -37,6 +37,12 @@
     <ClInclude Include="src\Kure\Events\MouseEvent.h">
       <Filter>Kure\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Kure\Layer.h">
+      <Filter>Kure</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Kure\LayerStack.h">
+      <Filter>Kure</Filter>
+    </ClInclude>
     <ClInclude Include="src\Kure\Log.h">
       <Filter>Kure</Filter>
     </ClInclude>
@@ -50,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Kure\Application.cpp">
+      <Filter>Kure</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Kure\Layer.cpp">
+      <Filter>Kure</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Kure\LayerStack.cpp">
       <Filter>Kure</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\Log.cpp">

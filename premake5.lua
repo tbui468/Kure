@@ -70,14 +70,20 @@ project "Kure"
 			"KR_DEBUG",
 			"KR_ENABLE_ASSERTS"
 		}
+--		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations.Debug"
 		defines "KR_RELEASE"
+--		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations.Debug"
 		defines "KR_DIST"
+--		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 project "Sandbox"
@@ -122,13 +128,18 @@ project "Sandbox"
 			"KR_DEBUG",
 			"KR_ENABLE_ASSERTS"
 		}
-
+--		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations.Debug"
 		defines "KR_RELEASE"
+--		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations.Debug"
 		defines "KR_DIST"
+--		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"

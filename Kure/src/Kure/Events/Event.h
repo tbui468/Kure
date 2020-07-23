@@ -20,6 +20,7 @@ namespace Kure {
 	//belong to multiple categories.  Doing this allows
 	//us to use a bitwise logical operators to combine
 	//categories
+	//enum class????
 	enum EventCategory
 	{
 		None = 0,
@@ -48,6 +49,7 @@ namespace Kure {
 		inline bool IsInCategory(EventCategory category) {
 			return GetCategoryFlags() & category;
 		}
+		virtual bool IsHandled() const { return m_Handled; }
 	protected:
 		bool m_Handled = false;
 	};

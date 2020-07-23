@@ -143,6 +143,8 @@
     <ClInclude Include="src\Kure\Events\Event.h" />
     <ClInclude Include="src\Kure\Events\KeyEvent.h" />
     <ClInclude Include="src\Kure\Events\MouseEvent.h" />
+    <ClInclude Include="src\Kure\Layer.h" />
+    <ClInclude Include="src\Kure\LayerStack.h" />
     <ClInclude Include="src\Kure\Log.h" />
     <ClInclude Include="src\Kure\Window.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
@@ -150,6 +152,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Kure\Application.cpp" />
+    <ClCompile Include="src\Kure\Layer.cpp" />
+    <ClCompile Include="src\Kure\LayerStack.cpp" />
     <ClCompile Include="src\Kure\Log.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\krpch.cpp">
