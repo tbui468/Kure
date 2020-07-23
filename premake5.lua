@@ -12,10 +12,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["GLFW"] = "Kure/vendor/GLFW/include"
+IncludeDir["glad"] = "Kure/vendor/glad/include"
 
 --this includes the premake5 file in glfw
---eg copy and pasted into this premake5 file
+--essentially copy and pasted into this premake5 file
 include "Kure/vendor/GLFW"
+include "Kure/vendor/glad"
 
 project "Kure"
 	location "Kure"
@@ -38,12 +40,15 @@ project "Kure"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.glad}"
 	}
 
+	--these are projects we link
 	links
 	{
 		"GLFW",
+		"glad",
 		"opengl32.lib"
 	}
 
@@ -55,7 +60,8 @@ project "Kure"
 		defines
 		{
 			"KR_PLATFORM_WINDOWS",
-			"KR_BUILD_DLL"
+			"KR_BUILD_DLL",
+			"GLFW_INCLUDE_NONE" --will not include opengl headers when including glfw
 		}
 
 		postbuildcommands

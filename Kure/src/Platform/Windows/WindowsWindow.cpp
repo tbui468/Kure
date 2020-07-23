@@ -5,6 +5,8 @@
 #include "Kure/Events/KeyEvent.h"
 #include "Kure/Events/MouseEvent.h"
 
+#include <glad/glad.h>
+
 
 namespace Kure {
 
@@ -43,6 +45,8 @@ namespace Kure {
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		KR_CORE_ASSERT(status, "Failed to initialize glad");
 		glfwSetWindowUserPointer(m_Window, &m_Data); //point to m_Data for callback functions
 		SetVSync(true);
 

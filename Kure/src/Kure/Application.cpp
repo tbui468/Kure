@@ -2,10 +2,7 @@
 
 #include "Application.h"
 
-//#include "Kure/Events/MouseEvent.h"
-//#include "Kure/Events/KeyEvent.h"
-
-#include <GLFW/glfw3.h> //USING THIS TO TEST CLEARCOLOR ONLY!!!
+#include <glad/glad.h>
 
 namespace Kure {
 
@@ -16,6 +13,9 @@ namespace Kure {
 	Application::Application() {
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+
+		unsigned int id;
+		glGenVertexArrays(1, &id);
 	}
 
 	Application::~Application() {
