@@ -5,6 +5,7 @@
 
 #include "Kure/Application.h"
 #include "Kure/Layer.h" //already included by Application.h, but here for clarity
+#include "Kure/ImGui/ImGuiLayer.h"
 
 //-------entry point-------------
 #include "Kure/EntryPoint.h"

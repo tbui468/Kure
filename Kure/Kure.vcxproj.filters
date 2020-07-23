@@ -7,8 +7,14 @@
     <Filter Include="Kure\Events">
       <UniqueIdentifier>{203140B7-8CE6-B8AC-15DB-B283818FAFB0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Kure\ImGui">
+      <UniqueIdentifier>{E642B9A8-D2FA-FAF5-3B02-D45127D995E6}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform\Windows">
       <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
@@ -37,6 +43,9 @@
     <ClInclude Include="src\Kure\Events\MouseEvent.h">
       <Filter>Kure\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Kure\ImGui\ImGuiLayer.h">
+      <Filter>Kure\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\Kure\Layer.h">
       <Filter>Kure</Filter>
     </ClInclude>
@@ -49,14 +58,23 @@
     <ClInclude Include="src\Kure\Window.h">
       <Filter>Kure</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\imgui_impl_glfw.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\krpch.h" />
+    <ClInclude Include="src\Platform\OpenGL\imguiOpenGLRenderer.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Kure\Application.cpp">
       <Filter>Kure</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Kure\ImGui\ImGuiLayer.cpp">
+      <Filter>Kure\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\Layer.cpp">
       <Filter>Kure</Filter>
@@ -67,9 +85,15 @@
     <ClCompile Include="src\Kure\Log.cpp">
       <Filter>Kure</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\imgui_impl_glfw.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\krpch.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\imguiOpenGLRenderer.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
