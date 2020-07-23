@@ -4,3 +4,6 @@
 [submodule "Kure/vendor/GLFW"]
 	path = Kure/vendor/GLFW
 	url = https://github.com/tbui468/glfw.git
+[submodule "Kure/vendor/ImGui"]
+	path = Kure/vendor/ImGui
+	url = https://github.com/tbui468/imgui.git
