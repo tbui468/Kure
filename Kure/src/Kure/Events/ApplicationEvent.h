@@ -10,9 +10,10 @@ namespace Kure {
 			m_Width(width), m_Height(height) {}
 		inline unsigned int GetWidth() const { return m_Width; }
 		inline unsigned int GetHeight() const { return m_Height; }
+		//overrides default ToString() to include width and height
 		std::string ToString() const override {
 			std::stringstream ss;
-			ss << "WindowResizeEvent: " << GetWidth() << " ," << GetHeight();
+			ss << "WindowResize: " << GetWidth() << ", " << GetHeight();
 			return ss.str();
 		}
 		EVENT_CLASS_TYPE(WindowResize)

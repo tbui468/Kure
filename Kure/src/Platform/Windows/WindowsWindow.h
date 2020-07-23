@@ -29,7 +29,7 @@ namespace Kure {
 			unsigned int Width;
 			unsigned int Height;
 			bool VSync;
-			EventCallbackFn EventCallback;
+			EventCallbackFn EventCallback;  //EventCallbackFn is std::function<void(Event&)>
 		};
 
 		WindowData m_Data;
