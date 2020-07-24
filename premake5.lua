@@ -1,5 +1,6 @@
 workspace "Kure"
 	architecture "x64"
+	startproject "Sandbox"
 
 	configurations
 	{
@@ -20,6 +21,7 @@ IncludeDir["ImGui"] = "Kure/vendor/ImGui"
 include "Kure/vendor/GLFW"
 include "Kure/vendor/glad"
 include "Kure/vendor/ImGui"
+
 
 project "Kure"
 	location "Kure"

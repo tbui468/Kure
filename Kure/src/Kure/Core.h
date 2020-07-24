@@ -16,8 +16,8 @@
 #endif
 
 #ifdef KR_ENABLE_ASSERTS
-	#define KR_ASSERT(x, ...) {if(!(x)) {HZ_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak();}}
-	#define KR_CORE_ASSERT(x, ...) {if(!(x)) {HZ_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak();}}
+	#define KR_ASSERT(x, ...) {if(!(x)) {KR_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak();}}
+	#define KR_CORE_ASSERT(x, ...) {if(!(x)) {KR_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak();}}
 #else
 	#define KR_ASSERT(x, ...)
 	#define KR_CORE_ASSERT(x, ...)

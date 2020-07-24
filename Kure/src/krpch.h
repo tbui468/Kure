@@ -14,6 +14,7 @@
 
 #include "Kure/Log.h"
 
+
 #ifdef KR_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif
