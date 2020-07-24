@@ -4,7 +4,6 @@
 
 #include "Window.h"
 #include "Kure/LayerStack.h"
-#include "Kure/Events/Event.h"
 #include "Kure/Events/ApplicationEvent.h"
 
 namespace Kure {
@@ -22,14 +21,12 @@ namespace Kure {
 		inline static Application& Get() { return *s_Instance; }
 		inline Window& GetWindow() { return *m_Window; }
 	private:
-		//these are the functions to perform for different events
+		//this is one of the events
 		bool OnWindowClose(WindowCloseEvent& e);
-		bool OnWindowResize(WindowResizeEvent& e);
 	private:
 		std::unique_ptr<Window> m_Window;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-	private:
 		static Application* s_Instance;
 	};
 

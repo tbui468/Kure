@@ -3,6 +3,7 @@
 #include "Kure/Core.h"
 
 
+
 namespace Kure {
 
 	//each line represents app, keyboard, mouse, etc events
@@ -12,7 +13,7 @@ namespace Kure {
 		None = 0,
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
 		AppTick, AppUpdate, AppRender,
-		KeyPressed, KeyReleased,
+		KeyPressed, KeyReleased, KeyTyped,
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 	};
 

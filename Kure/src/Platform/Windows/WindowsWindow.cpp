@@ -57,7 +57,7 @@ namespace Kure {
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 				data.Width = width;
 				data.Height = height;
-				WindowResizeEvent event(width, height);
+				WindowResizedEvent event(width, height);
 				data.EventCallback(event);
 		});
 
@@ -121,6 +121,13 @@ namespace Kure {
 				data.EventCallback(event);
 			});
 
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int keycode) {
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+				KeyTypedEvent event(keycode);
+				data.EventCallback(event);
+			});
+
+
 	}
 
 	void WindowsWindow::Shutdown() {
@@ -128,7 +135,7 @@ namespace Kure {
 	}
 
 	void WindowsWindow::OnUpdate() {
-		glfwPollEvents();
+		glfwPollEvents(); //this is where the callback functions we set in Init() are called 
 		glfwSwapBuffers(m_Window);
 	}
 

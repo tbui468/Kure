@@ -8,7 +8,6 @@ namespace Kure {
 
 //bind to OnEvent(Event& e) member function of 'this' instance
 //place holder _1 is Event paramter we will specify at calltime
-#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
 	Application* Application::s_Instance = nullptr;
 
@@ -17,7 +16,7 @@ namespace Kure {
 		s_Instance = this;
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
-		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+		m_Window->SetEventCallback(KR_BIND_EVENT_FN(Application::OnEvent));
 	}
 
 	Application::~Application() {
@@ -35,9 +34,8 @@ namespace Kure {
 
 	void Application::OnEvent(Event& e) {
 		EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose)); //OnWindowClose is only called if Event e matches type
-		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
-		//KR_CORE_TRACE("{0}", e); //log events
+		dispatcher.Dispatch<WindowCloseEvent>(KR_BIND_EVENT_FN(Application::OnWindowClose));
+//		KR_CORE_TRACE("{0}", e); //log events
 
 		//handle events from end() to begin()
 		//break loop if event is handled by a layer
@@ -67,9 +65,5 @@ namespace Kure {
 		return true;
 	}
 
-	//does nothing now
-	bool Application::OnWindowResize(WindowResizeEvent& e) {
-		return true;
-	}
 
 }

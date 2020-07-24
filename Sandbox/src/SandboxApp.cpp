@@ -19,7 +19,7 @@ class Sandbox : public Kure::Application
 {
 public:
 	Sandbox() {
-		PushLayer(new ExampleLayer());
+//		PushLayer(new ExampleLayer());
 		PushOverlay(new Kure::ImGuiLayer());
 	}
 	~Sandbox() {
