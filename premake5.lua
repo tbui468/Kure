@@ -25,6 +25,7 @@ project "Kure"
 	location "Kure"
 	kind "SharedLib"
 	language "C++"
+	staticruntime "Off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -58,7 +59,6 @@ project "Kure"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -74,25 +74,18 @@ project "Kure"
 		}
 
 
-	filter "configurations.Debug"
-		defines 
-		{
-			"KR_DEBUG",
-			"KR_ENABLE_ASSERTS"
-		}
---		buildoptions "/MDd"
+	filter "configurations:Debug"
+		defines "KR_DEBUG"
 		runtime "Debug"
 		symbols "On"
 
-	filter "configurations.Debug"
+	filter "configurations:Release"
 		defines "KR_RELEASE"
---		buildoptions "/MD"
 		runtime "Release"
 		optimize "On"
 
-	filter "configurations.Debug"
+	filter "configurations:Dist"
 		defines "KR_DIST"
---		buildoptions "/MD"
 		runtime "Release"
 		optimize "On"
 
@@ -100,6 +93,7 @@ project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	staticruntime "Off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -123,7 +117,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -132,24 +125,17 @@ project "Sandbox"
 		}
 
 
-	filter "configurations.Debug"
-		defines 
-		{
-			"KR_DEBUG",
-			"KR_ENABLE_ASSERTS"
-		}
---		buildoptions "/MDd"
+	filter "configurations:Debug"
+		defines "KR_DEBUG"
 		runtime "Debug"
 		symbols "On"
 
-	filter "configurations.Debug"
+	filter "configurations:Release"
 		defines "KR_RELEASE"
---		buildoptions "/MD"
 		runtime "Release"
 		optimize "On"
 
-	filter "configurations.Debug"
+	filter "configurations:Dist"
 		defines "KR_DIST"
---		buildoptions "/MD"
 		runtime "Release"
 		optimize "On"
