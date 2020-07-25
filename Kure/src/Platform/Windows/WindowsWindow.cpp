@@ -5,6 +5,8 @@
 #include "Kure/Events/KeyEvent.h"
 #include "Kure/Events/MouseEvent.h"
 
+#include "Kure/Log.h"
+
 #include <glad/glad.h>
 
 

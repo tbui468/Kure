@@ -12,7 +12,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "Kure/Log.h"
+//#include "Kure/Log.h"
 
 
 #ifdef KR_PLATFORM_WINDOWS

@@ -7,6 +7,9 @@
 
 #include "Kure/Application.h"
 
+
+#include "Kure/Log.h"
+
 //TEMPORARY - REMOVE LATER
 #include <GLFW/glfw3.h> 
 #include <glad/glad.h>
@@ -102,7 +105,7 @@ namespace Kure {
 		dispatcher.Dispatch<KeyTypedEvent>(KR_BIND_EVENT_FN(ImGuiLayer::OnKeyTyped));
 
 		//log event
-		KR_CORE_TRACE("ImGuiLayer OnEvent: {0}", event);
+//		KR_CORE_TRACE("ImGuiLayer OnEvent: {0}", event);
 
 	}
 	

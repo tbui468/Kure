@@ -4,7 +4,7 @@
 namespace Kure {
 
 	LayerStack::LayerStack() {
-		m_LayerInsert = m_Layers.begin();
+		m_LayerInsertIndex = 0;
 	}
 
 	LayerStack::~LayerStack() {
@@ -15,8 +15,8 @@ namespace Kure {
 
 	//Layers are pushed into front half of vector
 	void LayerStack::PushLayer(Layer* layer) {
-		m_Layers.emplace(m_LayerInsert, layer);
-		m_LayerInsert++;
+		m_Layers.emplace(m_Layers.begin() + m_LayerInsertIndex, layer);
+		m_LayerInsertIndex++;
 	}
 
 	//Overlays are pushed into back half of vector
@@ -25,16 +25,18 @@ namespace Kure {
 	}
 
 	void LayerStack::PopLayer(Layer* layer) {
-		std::vector<Layer*>::iterator iter = std::find(m_Layers.begin(), m_Layers.end(), layer);
-		if (iter != m_Layers.end()) {
+		std::vector<Layer*>::iterator iter = std::find(m_Layers.begin(), m_Layers.begin() + m_LayerInsertIndex, layer);
+		if (iter != m_Layers.begin() + m_LayerInsertIndex) {
+			layer->OnDetach();
 			m_Layers.erase(iter);
-			m_LayerInsert--;
+			m_LayerInsertIndex--;
 		}
 	}
 
 	void LayerStack::PopOverlay(Layer* overlay) {
-		std::vector<Layer*>::iterator iter = std::find(m_Layers.begin(), m_Layers.end(), overlay);
+		std::vector<Layer*>::iterator iter = std::find(m_Layers.begin() + m_LayerInsertIndex, m_Layers.end(), overlay);
 		if (iter != m_Layers.end()) {
+			overlay->OnDetach();
 			m_Layers.erase(iter);
 		}
 	}

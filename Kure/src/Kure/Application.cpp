@@ -3,11 +3,10 @@
 #include "Application.h"
 
 #include "Input.h"
+#include "Kure/Log.h"
 
 #include <glad/glad.h>
 
-//including GLFW for testing Input only!!!
-#include <GLFW/glfw3.h>
 
 namespace Kure {
 
