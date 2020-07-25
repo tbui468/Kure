@@ -135,7 +135,7 @@ namespace Kure {
 	}
 
 	void WindowsWindow::OnUpdate() {
-		glfwPollEvents(); //this is where the callback functions we set in Init() are called 
+		glfwPollEvents(); //this is where the callback functions we set in Init() are called by glfw
 		glfwSwapBuffers(m_Window);
 	}
 

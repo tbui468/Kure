@@ -2,7 +2,12 @@
 
 #include "Application.h"
 
+#include "Input.h"
+
 #include <glad/glad.h>
+
+//including GLFW for testing Input only!!!
+#include <GLFW/glfw3.h>
 
 namespace Kure {
 
@@ -35,7 +40,6 @@ namespace Kure {
 	void Application::OnEvent(Event& e) {
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(KR_BIND_EVENT_FN(Application::OnWindowClose));
-//		KR_CORE_TRACE("{0}", e); //log events
 
 		//handle events from end() to begin()
 		//break loop if event is handled by a layer
@@ -55,6 +59,7 @@ namespace Kure {
 			for (Layer* layer : m_LayerStack) {
 				layer->OnUpdate();
 			}
+
 
 			m_Window->OnUpdate();
 		}

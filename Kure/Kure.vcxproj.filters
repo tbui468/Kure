@@ -46,6 +46,9 @@
     <ClInclude Include="src\Kure\ImGui\ImGuiLayer.h">
       <Filter>Kure\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\Kure\Input.h">
+      <Filter>Kure</Filter>
+    </ClInclude>
     <ClInclude Include="src\Kure\Layer.h">
       <Filter>Kure</Filter>
     </ClInclude>
@@ -56,6 +59,9 @@
       <Filter>Kure</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Window.h">
+      <Filter>Kure</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Kure\WindowsInput.h">
       <Filter>Kure</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\imguiOpenGLRenderer.h">
@@ -83,6 +89,9 @@
       <Filter>Kure</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\Log.cpp">
+      <Filter>Kure</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Kure\WindowsInput.cpp">
       <Filter>Kure</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\imguiOpenGLRenderer.cpp">

@@ -1,5 +1,8 @@
 #pragma once
 
+//krpch.h is first #include in all cpp files, so
+//Core.h will always have access to Log.h for the logging macros
+
 //macros for dll import and dll export
 #ifdef KR_PLATFORM_WINDOWS
 	#ifdef KR_BUILD_DLL
