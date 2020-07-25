@@ -6,11 +6,21 @@ public:
 	ExampleLayer() : Layer("Example"){}
 
 	void OnUpdate() override {
-		KR_TRACE("ExampleLayer:OnUpdate()");
+//		KR_TRACE("ExampleLayer:OnUpdate()");
 	}
 
 	void OnEvent(Kure::Event& event) override {
-		KR_INFO("{0}", event);
+//		KR_INFO("{0}", event);
+		if (event.GetEventType() == Kure::EventType::KeyPressed)
+		{
+			Kure::KeyPressedEvent* e = (Kure::KeyPressedEvent*) & event;
+			KR_INFO("THis key pressed: {0}", char(e->GetKeyCode()));
+		}
+
+		if (event.GetEventType() == Kure::EventType::MouseButtonPressed) {
+			Kure::MouseButtonPressedEvent* e = (Kure::MouseButtonPressedEvent*) & event;
+			KR_INFO("THis key pressed: {0}", char(e->GetMouseButton()));
+		}
 	}
 };
 

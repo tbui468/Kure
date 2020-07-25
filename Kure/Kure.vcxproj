@@ -159,9 +159,11 @@
     <ClInclude Include="src\Kure\Events\MouseEvent.h" />
     <ClInclude Include="src\Kure\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Kure\Input.h" />
+    <ClInclude Include="src\Kure\KeyCodes.h" />
     <ClInclude Include="src\Kure\Layer.h" />
     <ClInclude Include="src\Kure\LayerStack.h" />
     <ClInclude Include="src\Kure\Log.h" />
+    <ClInclude Include="src\Kure\MouseButtonCodes.h" />
     <ClInclude Include="src\Kure\Window.h" />
     <ClInclude Include="src\Kure\WindowsInput.h" />
     <ClInclude Include="src\Platform\OpenGL\imguiOpenGLRenderer.h" />
@@ -197,4 +199,4 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
-</Project>
+</Project> 

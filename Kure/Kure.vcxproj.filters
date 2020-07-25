@@ -49,6 +49,9 @@
     <ClInclude Include="src\Kure\Input.h">
       <Filter>Kure</Filter>
     </ClInclude>
+    <ClInclude Include="src\Kure\KeyCodes.h">
+      <Filter>Kure</Filter>
+    </ClInclude>
     <ClInclude Include="src\Kure\Layer.h">
       <Filter>Kure</Filter>
     </ClInclude>
@@ -56,6 +59,9 @@
       <Filter>Kure</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Log.h">
+      <Filter>Kure</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Kure\MouseButtonCodes.h">
       <Filter>Kure</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Window.h">
