@@ -2,6 +2,10 @@
 
 
 
+#include "ImGui/imgui.h"
+
+
+
 class ExampleLayer : public Kure::Layer {
 public:
 	ExampleLayer() : Layer("Example"){}
@@ -23,6 +27,12 @@ public:
 			KR_INFO("THis key pressed: {0}", char(e->GetMouseButton()));
 		}
 	}
+
+	void OnImGuiRender() override {
+		ImGui::Begin("Test");
+		ImGui::Text("Hi");
+		ImGui::End();
+	}
 };
 
 //class for our app, which is a child class of Kure::Application
@@ -31,7 +41,6 @@ class Sandbox : public Kure::Application
 public:
 	Sandbox() {
 		PushLayer(new ExampleLayer());
-		PushOverlay(new Kure::ImGuiLayer());
 	}
 	~Sandbox() {
 

@@ -13,22 +13,12 @@ namespace Kure {
 	public:
 		ImGuiLayer();
 		~ImGuiLayer();
-		virtual void OnAttach();
-		virtual void OnDetach();
-		virtual void OnUpdate();
-		virtual void OnEvent(Event& event);
-	private:
-		//application events
-		bool OnWindowResized(WindowResizedEvent& event);
-		//mouse events
-		bool OnMouseMoved(MouseMovedEvent& event);
-		bool OnMouseScrolled(MouseScrolledEvent& event);
-		bool OnMouseButtonPressed(MouseButtonPressedEvent& event);
-		bool OnMouseButtonReleased(MouseButtonReleasedEvent& event);
-		//key events
-		bool OnKeyPressed(KeyPressedEvent& event);
-		bool OnKeyReleased(KeyReleasedEvent& event);
-		bool OnKeyTyped(KeyTypedEvent& event);
+		virtual void OnAttach() override;
+		virtual void OnDetach() override;
+		void OnImGuiRender() override;
+	
+		void Begin();
+		void End();
 	private:
 		float m_Time = 0.0f;
 	};

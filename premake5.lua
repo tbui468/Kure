@@ -112,7 +112,8 @@ project "Sandbox"
 	{
 		"Kure/vendor/spdlog/include",
 		"Kure/src",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"Kure/vendor"
 	}
 
 	links
@@ -126,7 +127,8 @@ project "Sandbox"
 
 		defines
 		{
-			"KR_PLATFORM_WINDOWS"
+			"KR_PLATFORM_WINDOWS",
+			"IMGUI_API=__declspec(dllimport)"
 		}
 
 

@@ -6,6 +6,9 @@
 #include "Kure/LayerStack.h"
 #include "Kure/Events/ApplicationEvent.h"
 
+
+#include "Kure/ImGui/ImGuiLayer.h"
+
 namespace Kure {
 
 	class KURE_API Application
@@ -25,6 +28,7 @@ namespace Kure {
 		bool OnWindowClose(WindowCloseEvent& e);
 	private:
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 		static Application* s_Instance;
