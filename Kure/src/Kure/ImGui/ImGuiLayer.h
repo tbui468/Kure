@@ -29,9 +29,6 @@ namespace Kure {
 		bool OnKeyPressed(KeyPressedEvent& event);
 		bool OnKeyReleased(KeyReleasedEvent& event);
 		bool OnKeyTyped(KeyTypedEvent& event);
-		//copy and pasting: I don't know how to test this
-		//static void SetClipboard(void* user_data, const char* text);
-		//static const char* GetClipboard(void* user_data);
 	private:
 		float m_Time = 0.0f;
 	};

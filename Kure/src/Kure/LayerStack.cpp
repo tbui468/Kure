@@ -3,9 +3,7 @@
 
 namespace Kure {
 
-	LayerStack::LayerStack() {
-		m_LayerInsertIndex = 0;
-	}
+	LayerStack::LayerStack() {}
 
 	LayerStack::~LayerStack() {
 		for (Layer* layer : m_Layers) {

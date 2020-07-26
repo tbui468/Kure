@@ -17,7 +17,7 @@ IncludeDir["glad"] = "Kure/vendor/glad/include"
 IncludeDir["ImGui"] = "Kure/vendor/ImGui"
 IncludeDir["glm"] = "Kure/vendor/glm"
 
---this includes the premake5 file in glfw
+--this includes the premake5 file in that directory
 --essentially copy and pasted into this premake5 file
 include "Kure/vendor/GLFW"
 include "Kure/vendor/glad"

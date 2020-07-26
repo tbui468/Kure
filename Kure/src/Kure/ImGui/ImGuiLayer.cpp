@@ -1,8 +1,10 @@
 #include "krpch.h"
 
 #include "ImGuiLayer.h"
-#include "imgui.h"
-#include "Platform/OpenGL/imguiOpenGLRenderer.h"
+#include "imgui.h" //IMGUI_IMPL_API
+
+#include "examples/imgui_impl_glfw.h"
+#include "examples/imgui_impl_opengl3.h"
 
 
 #include "Kure/Application.h"
@@ -26,7 +28,6 @@ namespace Kure {
 	}
 
 	void ImGuiLayer::OnAttach() {
-
 
 		ImGui::CreateContext();
 		ImGui::StyleColorsDark();
@@ -168,15 +169,5 @@ namespace Kure {
 		return false;
 	}
 
-/*
-	const char* ImGuiLayer::GetClipboard(void* user_data)
-	{
-		return glfwGetClipboardString((GLFWwindow*)user_data);
-	}
-
-	void ImGuiLayer::SetClipboard(void* user_data, const char* text)
-	{
-		glfwSetClipboardString((GLFWwindow*)user_data, text);
-	}*/
 
 }

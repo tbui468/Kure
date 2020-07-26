@@ -1,6 +1,7 @@
 #include <Kure.h> //this is all the game engine header files
 
 
+
 class ExampleLayer : public Kure::Layer {
 public:
 	ExampleLayer() : Layer("Example"){}
