@@ -10,8 +10,14 @@
     <Filter Include="Kure\ImGui">
       <UniqueIdentifier>{E642B9A8-D2FA-FAF5-3B02-D45127D995E6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Kure\Renderer">
+      <UniqueIdentifier>{E2070C7F-4EC8-87B5-1703-D1328382CC91}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform\Windows">
       <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
@@ -61,18 +67,25 @@
     <ClInclude Include="src\Kure\MouseButtonCodes.h">
       <Filter>Kure</Filter>
     </ClInclude>
+    <ClInclude Include="src\Kure\Renderer\Context.h">
+      <Filter>Kure\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Kure\Renderer\Shader.h">
+      <Filter>Kure\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Kure\Window.h">
       <Filter>Kure</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\WindowsInput.h">
       <Filter>Kure</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\krpch.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
-    <ClInclude Include="src\Kure\Renderer\Context.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Kure\Application.cpp">
@@ -93,13 +106,18 @@
     <ClCompile Include="src\Kure\Log.cpp">
       <Filter>Kure</Filter>
     </ClCompile>
+    <ClCompile Include="src\Kure\Renderer\Shader.cpp">
+      <Filter>Kure\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Kure\WindowsInput.cpp">
       <Filter>Kure</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\krpch.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
   </ItemGroup>
 </Project>

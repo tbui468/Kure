@@ -5,6 +5,7 @@
 #include "Window.h"
 #include "Kure/LayerStack.h"
 #include "Kure/Events/ApplicationEvent.h"
+#include "Kure/Renderer/Shader.h"
 
 
 #include "Kure/ImGui/ImGuiLayer.h"
@@ -37,6 +38,7 @@ namespace Kure {
 		unsigned int m_VertexArray;
 		unsigned int m_VertexBuffer;
 		unsigned int m_IndexBuffer;
+		std::unique_ptr<Shader> m_Shader;
 	};
 
 	//To be defined in CLIENT
