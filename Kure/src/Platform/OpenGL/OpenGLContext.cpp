@@ -16,6 +16,12 @@ namespace Kure {
 		glfwMakeContextCurrent(m_WindowHandle);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		KR_CORE_ASSERT(status, "Failed to initialize glad");
+
+		//check opengl vendor, driver, etc
+		KR_CORE_INFO("OpenGL info:");
+		KR_CORE_INFO("Vendor: {0}", glGetString(GL_VENDOR));
+		KR_CORE_INFO("Rendere: {0}", glGetString(GL_RENDERER));
+		KR_CORE_INFO("Version: {0}", glGetString(GL_VERSION));
 	}
 
 	void OpenGLContext::SwapBuffers() {
