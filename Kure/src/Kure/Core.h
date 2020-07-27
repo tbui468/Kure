@@ -6,11 +6,9 @@
 //macros for dll import and dll export
 #ifdef KR_PLATFORM_WINDOWS
 	#ifdef KR_BUILD_DLL
-		#define KURE_API __declspec(dllexport)
-		#define IMGUI_API __declspec(dllexport)
+		#define KURE_API
 	#else
-		#define KURE_API __declspec(dllimport)
-		#define IMGUI_API __declspec(dllimport)
+		#define KURE_API
 	#endif
 #else
 	#error Kure only supports Windows!

@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Kure/Window.h"
+#include "Kure/Renderer/Context.h"
+
 #include <GLFW/glfw3.h>
 
 
@@ -24,6 +26,7 @@ namespace Kure {
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
+		Context* m_Context;
 
 		struct WindowData {
 			std::string Title;
