@@ -25,8 +25,8 @@ namespace Kure {
 		virtual void Init(const WindowProps& prop);
 		virtual void Shutdown();
 	private:
-		GLFWwindow* m_Window;
-		Context* m_Context;
+		GLFWwindow* m_Window; 
+		Context* m_Context;  //contexts are related to rendering
 
 		struct WindowData {
 			std::string Title;

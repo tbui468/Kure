@@ -140,6 +140,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="src\Kure\Renderer\Renderer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="src\Kure\Renderer\Buffer.h" />
     <ClInclude Include="src\Kure.h" />
     <ClInclude Include="src\Kure\Application.h" />
     <ClInclude Include="src\Kure\Core.h" />
@@ -164,6 +168,10 @@
     <ClInclude Include="src\krpch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="src\Kure\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\Kure\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Kure\Application.cpp" />
     <ClCompile Include="src\Kure\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Kure\ImGui\ImGuiLayer.cpp" />
