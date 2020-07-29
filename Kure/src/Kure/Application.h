@@ -7,6 +7,7 @@
 #include "Kure/Events/ApplicationEvent.h"
 #include "Kure/Renderer/Shader.h"
 #include "Kure/Renderer/Buffer.h"
+#include "Kure/Renderer/VertexArray.h"
 
 
 #include "Kure/ImGui/ImGuiLayer.h"
@@ -35,11 +36,12 @@ namespace Kure {
 		LayerStack m_LayerStack;
 		static Application* s_Instance;
 
-		//opengl vars
-		unsigned int m_VertexArray;
-		std::unique_ptr<Shader> m_Shader;
-		std::unique_ptr<VertexBuffer> m_VertexBuffer;
-		std::unique_ptr<IndexBuffer> m_IndexBuffer;
+		
+		std::shared_ptr<VertexArray> m_VertexArray;
+		std::shared_ptr<Shader> m_Shader;
+
+		std::shared_ptr<VertexArray> m_BoxVertexArray;
+		std::shared_ptr<Shader> m_BlueShader;
 	};
 
 	//To be defined in CLIENT

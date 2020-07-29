@@ -67,10 +67,19 @@
     <ClInclude Include="src\Kure\MouseButtonCodes.h">
       <Filter>Kure</Filter>
     </ClInclude>
+    <ClInclude Include="src\Kure\Renderer\Buffer.h">
+      <Filter>Kure\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Kure\Renderer\Context.h">
       <Filter>Kure\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Kure\Renderer\Renderer.h">
+      <Filter>Kure\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Kure\Renderer\Shader.h">
+      <Filter>Kure\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Kure\Renderer\VertexArray.h">
       <Filter>Kure\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Window.h">
@@ -79,17 +88,22 @@
     <ClInclude Include="src\Kure\WindowsInput.h">
       <Filter>Kure</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\krpch.h" />
-    <ClInclude Include="src\Kure\Renderer\Buffer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
-    <ClInclude Include="src\Kure\Renderer\Renderer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Kure\Application.cpp">
@@ -110,22 +124,36 @@
     <ClCompile Include="src\Kure\Log.cpp">
       <Filter>Kure</Filter>
     </ClCompile>
+    <ClCompile Include="src\Kure\Renderer\Buffer.cpp">
+      <Filter>Kure\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Kure\Renderer\Renderer.cpp">
+      <Filter>Kure\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Kure\Renderer\Shader.cpp">
+      <Filter>Kure\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Kure\Renderer\VertexArray.cpp">
       <Filter>Kure\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\WindowsInput.cpp">
       <Filter>Kure</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\krpch.cpp" />
-    <ClCompile Include="src\Kure\Renderer\Buffer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
-    <ClCompile Include="src\Kure\Renderer\Renderer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
   </ItemGroup>
 </Project>
