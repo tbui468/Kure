@@ -73,7 +73,13 @@
     <ClInclude Include="src\Kure\Renderer\Context.h">
       <Filter>Kure\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Kure\Renderer\RenderCommand.h">
+      <Filter>Kure\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Kure\Renderer\Renderer.h">
+      <Filter>Kure\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Kure\Renderer\RendererAPI.h">
       <Filter>Kure\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Renderer\Shader.h">
@@ -92,6 +98,9 @@
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
@@ -127,7 +136,13 @@
     <ClCompile Include="src\Kure\Renderer\Buffer.cpp">
       <Filter>Kure\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Kure\Renderer\RenderCommand.cpp">
+      <Filter>Kure\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Kure\Renderer\Renderer.cpp">
+      <Filter>Kure\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Kure\Renderer\RendererAPI.cpp">
       <Filter>Kure\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\Renderer\Shader.cpp">
@@ -143,6 +158,9 @@
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">

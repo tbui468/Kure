@@ -10,8 +10,8 @@ namespace Kure {
 
 	VertexArray* VertexArray::Create() {
 		switch (Renderer::GetAPI()) {
-		case RendererAPI::None:   KR_CORE_ASSERT(false, "Renderer API not specified"); return nullptr;
-		case RendererAPI::OpenGL:   return new OpenGLVertexArray();
+		case RendererAPI::API::None:   KR_CORE_ASSERT(false, "Renderer API not specified"); return nullptr;
+		case RendererAPI::API::OpenGL:   return new OpenGLVertexArray();
 		}
 
 		KR_CORE_ASSERT(false, "Specified Renderer API not defined!");
