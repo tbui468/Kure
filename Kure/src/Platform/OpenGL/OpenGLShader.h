@@ -8,8 +8,9 @@ namespace Kure {
 	{
 	public:
 		OpenGLShader(const std::string& vertexSrc, const std::string& fragmentSrc);
-		virtual void Bind() override;
-		virtual void Unbind() override;
+		virtual void Bind() const override;
+		virtual void Unbind() const override;
+		virtual void UploadUniformMat4(glm::mat4 matrix, const std::string& name) const override;
 	private:
 		uint32_t m_RendererID;
 	};

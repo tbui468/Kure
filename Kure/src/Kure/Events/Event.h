@@ -33,6 +33,9 @@ namespace Kure {
 	};
 
 //Some MACROS to avoid retyping a bunch of stuff
+//why do we need GetStaticType AND GetEventType?
+//GetStaticType is for the eventdispatcher(which is templated with type T)
+//GetEventType is for the actual event
 #define EVENT_CLASS_TYPE(type) static EventType GetStaticType() {return EventType::##type;}\
 								virtual EventType GetEventType() const override {return GetStaticType();}\
 								virtual const char* GetName() const override {return #type;}

@@ -143,6 +143,7 @@
     <ClInclude Include="src\Kure.h" />
     <ClInclude Include="src\Kure\Application.h" />
     <ClInclude Include="src\Kure\Core.h" />
+    <ClInclude Include="src\Kure\Core\TimeStep.h" />
     <ClInclude Include="src\Kure\EntryPoint.h" />
     <ClInclude Include="src\Kure\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Kure\Events\Event.h" />
@@ -156,7 +157,9 @@
     <ClInclude Include="src\Kure\Log.h" />
     <ClInclude Include="src\Kure\MouseButtonCodes.h" />
     <ClInclude Include="src\Kure\Renderer\Buffer.h" />
+    <ClInclude Include="src\Kure\Renderer\Camera.h" />
     <ClInclude Include="src\Kure\Renderer\Context.h" />
+    <ClInclude Include="src\Kure\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\Kure\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Kure\Renderer\Renderer.h" />
     <ClInclude Include="src\Kure\Renderer\RendererAPI.h" />
@@ -180,6 +183,8 @@
     <ClCompile Include="src\Kure\LayerStack.cpp" />
     <ClCompile Include="src\Kure\Log.cpp" />
     <ClCompile Include="src\Kure\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Kure\Renderer\Camera.cpp" />
+    <ClCompile Include="src\Kure\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Kure\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Kure\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Kure\Renderer\RendererAPI.cpp" />

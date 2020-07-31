@@ -8,7 +8,7 @@ namespace Kure {
 	class RenderCommand
 	{
 	public:
-		inline static void DrawIndexed(const std::shared_ptr<VertexArray>& vertexArray) {
+		inline static void DrawIndexed(const VertexArray& vertexArray) {
 			s_RendererAPI->DrawIndexed(vertexArray);
 		}
 		inline static void SetClearColor(const glm::vec4& color) {
@@ -18,7 +18,7 @@ namespace Kure {
 			s_RendererAPI->Clear();
 		}
 	private:
-		static RendererAPI* s_RendererAPI;
+		static RendererAPI* s_RendererAPI; //point to specific rendererAPI (eg, OpenGL, DirectX, etc)
 	};
 
 }

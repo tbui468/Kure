@@ -4,12 +4,6 @@
 
 #include "Window.h"
 #include "Kure/LayerStack.h"
-#include "Kure/Events/ApplicationEvent.h"
-#include "Kure/Renderer/Shader.h"
-#include "Kure/Renderer/Buffer.h"
-#include "Kure/Renderer/VertexArray.h"
-
-
 #include "Kure/ImGui/ImGuiLayer.h"
 
 namespace Kure {
@@ -19,15 +13,14 @@ namespace Kure {
 	public:
 		Application();
 		virtual ~Application();
-		void Run();
 		void OnEvent(Event& e);
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* overlay);
 
 		inline static Application& Get() { return *s_Instance; }
 		inline Window& GetWindow() { return *m_Window; }
+		void Run();
 	private:
-		//this is one of the events
 		bool OnWindowClose(WindowCloseEvent& e);
 	private:
 		std::unique_ptr<Window> m_Window;
@@ -35,13 +28,7 @@ namespace Kure {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 		static Application* s_Instance;
-
-		
-		std::shared_ptr<VertexArray> m_VertexArray;
-		std::shared_ptr<Shader> m_Shader;
-
-		std::shared_ptr<VertexArray> m_BoxVertexArray;
-		std::shared_ptr<Shader> m_BlueShader;
+		float m_lastFrameTime = 0.0f;
 	};
 
 	//To be defined in CLIENT

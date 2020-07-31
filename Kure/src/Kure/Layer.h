@@ -2,6 +2,7 @@
 
 #include "Kure/Core.h"
 #include "Kure/Events/Event.h"
+#include "Kure/Core/TimeStep.h"
 
 namespace Kure {
 
@@ -13,7 +14,7 @@ namespace Kure {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {} 
+		virtual void OnUpdate(TimeStep ts) {} 
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 

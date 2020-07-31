@@ -70,7 +70,13 @@
     <ClInclude Include="src\Kure\Renderer\Buffer.h">
       <Filter>Kure\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Kure\Renderer\Camera.h">
+      <Filter>Kure\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Kure\Renderer\Context.h">
+      <Filter>Kure\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Kure\Renderer\OrthographicCamera.h">
       <Filter>Kure\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Renderer\RenderCommand.h">
@@ -113,6 +119,7 @@
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\krpch.h" />
+    <ClInclude Include="src\Kure\Core\TimeStep.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Kure\Application.cpp">
@@ -134,6 +141,9 @@
       <Filter>Kure</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\Renderer\Buffer.cpp">
+      <Filter>Kure\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Kure\Renderer\OrthographicCamera.cpp">
       <Filter>Kure\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\Renderer\RenderCommand.cpp">
@@ -173,5 +183,6 @@
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\krpch.cpp" />
+    <ClCompile Include="src\Kure\Renderer\Camera.cpp" />
   </ItemGroup>
 </Project>

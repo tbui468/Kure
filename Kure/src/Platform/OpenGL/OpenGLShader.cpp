@@ -3,6 +3,8 @@
 
 #include "Kure/Log.h"
 
+#include <glm/gtc/type_ptr.hpp>
+
 #include <glad/glad.h>
 
 namespace Kure {
@@ -120,12 +122,20 @@ namespace Kure {
 	}
 
 
-	void OpenGLShader::Bind() {
+	void OpenGLShader::Bind() const {
 		glUseProgram(m_RendererID);
 	}
 
-	void OpenGLShader::Unbind() {
+	void OpenGLShader::Unbind() const {
 		glUseProgram(0);
+	}
+
+
+	void OpenGLShader::UploadUniformMat4(glm::mat4 matrix, const std::string& name) const {
+		//get uniform location
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		//upload uniform using that 
+		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
 	}
 
 }
