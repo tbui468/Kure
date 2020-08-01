@@ -131,10 +131,38 @@ namespace Kure {
 	}
 
 
-	void OpenGLShader::UploadUniformMat4(glm::mat4 matrix, const std::string& name) const {
-		//get uniform location
+	void OpenGLShader::UploadUniformInt(int value, const std::string& name) const {
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
-		//upload uniform using that 
+		glUniform1i(location, value);
+	}
+
+	void OpenGLShader::UploadUniformFloat(float value, const std::string& name) const {
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		glUniform1f(location, value);
+	}
+	void OpenGLShader::UploadUniformFloat2(glm::vec2 vec, const std::string& name) const {
+
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		glUniform2f(location, vec.x, vec.y);
+	}
+	void OpenGLShader::UploadUniformFloat3(glm::vec3 vec, const std::string& name) const {
+
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		glUniform3f(location, vec.x, vec.y, vec.z);
+	}
+
+	void OpenGLShader::UploadUniformFloat4(glm::vec4 vec, const std::string& name) const {
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		glUniform4f(location, vec.x, vec.y, vec.z, vec.w);
+	}
+
+	void OpenGLShader::UploadUniformMat3(glm::mat3 matrix, const std::string& name) const {
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		glUniformMatrix3fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
+	}
+
+	void OpenGLShader::UploadUniformMat4(glm::mat4 matrix, const std::string& name) const {
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
 	}
 

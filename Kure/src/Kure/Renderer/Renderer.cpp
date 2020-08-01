@@ -1,6 +1,7 @@
 #include "krpch.h"
 #include "Renderer.h"
 #include "RenderCommand.h"
+#include "Platform/OpenGL/OpenGLShader.h"
 
 namespace Kure {
 
@@ -10,10 +11,10 @@ namespace Kure {
 	void Renderer::BeginScene(const Camera& camera) {
 		m_ViewProjectionMatrix = camera.GetViewProjectionMatrix();
 	}
-	void Renderer::Submit(const VertexArray& vertexArray, const Shader& shader, const glm::mat4& transform) {
+	void Renderer::Submit(const VertexArray& vertexArray, Shader& shader, const glm::mat4& transform) {
 		shader.Bind();
-		shader.UploadUniformMat4(m_ViewProjectionMatrix, "u_ViewProjMatrix");
-		shader.UploadUniformMat4(transform, "u_Transform");
+		dynamic_cast<OpenGLShader*>(&shader)->UploadUniformMat4(m_ViewProjectionMatrix, "u_ViewProjMatrix"); 
+		dynamic_cast<OpenGLShader*>(&shader)->UploadUniformMat4(transform, "u_Transform"); 
 		vertexArray.Bind();
 		RenderCommand::DrawIndexed(vertexArray);
 	}

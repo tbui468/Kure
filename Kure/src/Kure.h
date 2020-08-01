@@ -23,6 +23,10 @@
 
 #include "Kure/ImGui/ImGuiLayer.h"
 
+//platform specific
+#include "Platform/OpenGL/OpenGLShader.h"
+
+
 //-------entry point-------------
 #include "Kure/EntryPoint.h"
 //-------------------------------

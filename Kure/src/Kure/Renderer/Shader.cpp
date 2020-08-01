@@ -4,7 +4,6 @@
 #include "Kure/Renderer/Renderer.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
-#include <glad/glad.h>
 
 namespace Kure {
 
