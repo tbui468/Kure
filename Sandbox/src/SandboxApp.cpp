@@ -29,7 +29,7 @@ public:
 		//create vertex buffer
 		//Why are we creating memory on the heap with pointers???  Why not the stack???
 		//is it because the buffers are very large?
-		std::shared_ptr<Kure::VertexBuffer> vertexBuffer;
+		Kure::Ref<Kure::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(Kure::VertexBuffer::Create(vertices, sizeof(vertices))); //reset allows you to set a managed pointer to a raw pointer
 		Kure::BufferLayout layout = {
 			{Kure::ShaderDataType::Float3, "a_location"},
@@ -39,7 +39,7 @@ public:
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		//create index buffer
-		std::shared_ptr<Kure::IndexBuffer> indexBuffer;
+		Kure::Ref<Kure::IndexBuffer> indexBuffer;
 		unsigned int indices[3] = { 0 , 1, 2 };
 		indexBuffer.reset(Kure::IndexBuffer::Create(indices, 3));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
@@ -54,7 +54,7 @@ public:
 			-0.75f, 0.75f, 0.0f
 		};
 
-		std::shared_ptr<Kure::VertexBuffer> boxVertexBuffer;
+		Kure::Ref<Kure::VertexBuffer> boxVertexBuffer;
 		boxVertexBuffer.reset(Kure::VertexBuffer::Create(boxVertices, sizeof(boxVertices)));
 		Kure::BufferLayout boxLayout = {
 			{Kure::ShaderDataType::Float3, "a_location"}
@@ -62,7 +62,7 @@ public:
 		boxVertexBuffer->SetLayout(boxLayout);
 		m_BoxVertexArray->AddVertexBuffer(boxVertexBuffer);
 
-		std::shared_ptr<Kure::IndexBuffer> boxIndexBuffer;
+		Kure::Ref<Kure::IndexBuffer> boxIndexBuffer;
 		unsigned int boxIndices[6] = { 0, 1, 2, 2, 3, 0 };
 		boxIndexBuffer.reset(Kure::IndexBuffer::Create(boxIndices, 6));
 		m_BoxVertexArray->SetIndexBuffer(boxIndexBuffer);
@@ -218,13 +218,13 @@ public:
 		ImGui::End();
 	}
 private:
-	std::unique_ptr<Kure::VertexArray> m_VertexArray;
-	std::unique_ptr<Kure::Shader> m_Shader;
+	Kure::Ref<Kure::VertexArray> m_VertexArray;
+	Kure::Ref<Kure::Shader> m_Shader;
 
-	std::unique_ptr<Kure::VertexArray> m_BoxVertexArray;
-	std::unique_ptr<Kure::Shader> m_BlueShader;
+	Kure::Ref<Kure::VertexArray> m_BoxVertexArray;
+	Kure::Ref<Kure::Shader> m_BlueShader;
 
-	std::unique_ptr<Kure::Camera> m_Camera;
+	Kure::Ref<Kure::Camera> m_Camera;
 	glm::vec3 m_CameraPos = glm::vec3(0.0f);
 	glm::vec3 m_CameraAngle = glm::vec3(0.0f);
 	float m_CameraSpeed = 1.0f;

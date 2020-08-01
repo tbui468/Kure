@@ -27,6 +27,7 @@ namespace Kure {
 		if (iter != m_Layers.begin() + m_LayerInsertIndex) {
 			layer->OnDetach();
 			m_Layers.erase(iter);
+			delete layer;
 			m_LayerInsertIndex--;
 		}
 	}
@@ -36,6 +37,7 @@ namespace Kure {
 		if (iter != m_Layers.end()) {
 			overlay->OnDetach();
 			m_Layers.erase(iter);
+			delete overlay;
 		}
 	}
 
