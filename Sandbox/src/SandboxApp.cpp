@@ -44,20 +44,24 @@ public:
 		indexBuffer.reset(Kure::IndexBuffer::Create(indices, 3));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
+
+
+
 		//second box object to draw
 		m_BoxVertexArray.reset(Kure::VertexArray::Create());
 
-		float boxVertices[3 * 4] = {
-			-0.75f, -0.75f, 0.0f,
-			0.75f, -0.75f, 0.0f,
-			0.75f, 0.75f, 0.0f,
-			-0.75f, 0.75f, 0.0f
+		float boxVertices[5 * 4] = {
+			-0.75f, -0.75f, 0.0f, 0.0f, 0.0f, 
+			0.75f, -0.75f, 0.0f, 1.0f, 0.0f, 
+			0.75f, 0.75f, 0.0f, 1.0f, 1.0f, 
+			-0.75f, 0.75f, 0.0f, 0.0f, 1.0f
 		};
 
 		Kure::Ref<Kure::VertexBuffer> boxVertexBuffer;
 		boxVertexBuffer.reset(Kure::VertexBuffer::Create(boxVertices, sizeof(boxVertices)));
 		Kure::BufferLayout boxLayout = {
-			{Kure::ShaderDataType::Float3, "a_location"}
+			{Kure::ShaderDataType::Float3, "a_location"},
+			{Kure::ShaderDataType::Float2, "a_texCoord"}
 		};
 		boxVertexBuffer->SetLayout(boxLayout);
 		m_BoxVertexArray->AddVertexBuffer(boxVertexBuffer);
@@ -67,7 +71,7 @@ public:
 		boxIndexBuffer.reset(Kure::IndexBuffer::Create(boxIndices, 6));
 		m_BoxVertexArray->SetIndexBuffer(boxIndexBuffer);
 
-		//define our shaders
+		//triangle shader
 		std::string vertexSrc = R"(
 		#version 330 core 
 		
@@ -78,10 +82,8 @@ public:
 		uniform mat4 u_Transform;
 
 		out vec4 v_Color;
-		out vec3 v_Position;
 	
 		void main() {
-			v_Position = a_Position;
 			v_Color = a_Color;
 			gl_Position = u_ViewProjMatrix * u_Transform * vec4(a_Position, 1.0);
 		}
@@ -94,12 +96,10 @@ public:
 
 		layout(location = 0) out vec4 color;	
 
-		in vec3 v_Position;
 		in vec4 v_Color;
 
 
 		void main() {
-			color = vec4((v_Position + 1) * 0.5, 1.0);
 			color = v_Color;
 		}
 
@@ -137,14 +137,54 @@ public:
 
 		)";
 
-		m_BlueShader.reset(Kure::Shader::Create(blueVertexSrc, blueFragmentSrc));
+//		m_BlueShader.reset(Kure::Shader::Create(blueVertexSrc, blueFragmentSrc));
 
+
+		//define our texture shader
+		std::string textureVertexSrc = R"(
+		#version 330 core 
+		
+		layout(location = 0) in vec3 a_Position;
+		layout(location = 1) in vec2 a_TexCoord;
+
+		out vec2 v_TexCoord;
+
+		uniform mat4 u_ViewProjMatrix;
+		uniform mat4 u_Transform;
+	
+		void main() {
+			gl_Position = u_ViewProjMatrix * u_Transform * vec4(a_Position, 1.0);
+			v_TexCoord = a_TexCoord;
+		}
+
+		)";
+
+
+		std::string textureFragmentSrc = R"(
+		#version 330 core
+
+		layout(location = 0) out vec4 color;	
+			
+		in vec2 v_TexCoord;
+
+		uniform sampler2D u_Texture;
+	
+		void main() {
+			color = texture(u_Texture, v_TexCoord);
+		}
+
+		)";
+
+		m_Texture = Kure::Texture2D::Create("assets/textures/texture.png");
+		m_Texture->Bind(0);
+		m_TextureShader.reset(Kure::Shader::Create(textureVertexSrc, textureFragmentSrc));
+		dynamic_cast<Kure::OpenGLShader*>(m_TextureShader.get())->UploadUniformInt(0, "u_Texture");  //upload texture
 		//set up camera
 		m_Camera.reset(Kure::Camera::Create(-1.6f, 1.6f, -.9f, .9f, -1.0f, 1.0f));
 	}
 
 	void OnUpdate(Kure::TimeStep ts) override {
-		m_Angle += 1.0f * ts;
+//		m_Angle += 1.0f * ts;
 		//Render commands here
 		Kure::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 		Kure::RenderCommand::Clear();
@@ -152,12 +192,11 @@ public:
 		Kure::Renderer::BeginScene(*m_Camera);
 
 		//we need a way to upload uinforms too
-		m_BlueShader->Bind();
-		dynamic_cast<Kure::OpenGLShader*>(m_BlueShader.get())->UploadUniformFloat4(glm::vec4(m_Color, 1.0f), "u_Color"); 
-		Kure::Renderer::Submit(*m_BoxVertexArray, *m_BlueShader, glm::rotate(glm::mat4(1.0f), m_Angle, { 0.0f, 0.0f, 1.0f }));
+//		m_BlueShader->Bind();
+//		dynamic_cast<Kure::OpenGLShader*>(m_BlueShader.get())->UploadUniformFloat4(glm::vec4(m_Color, 1.0f), "u_Color"); 
+//		m_TextureShader->Bind();
+		Kure::Renderer::Submit(*m_BoxVertexArray, *m_TextureShader, glm::rotate(glm::mat4(1.0f), m_Angle, { 0.0f, 0.0f, 1.0f }));
 
-		//m_Shader->Bind();
-		//dynamic_cast<Kure::OpenGLShader*>(m_Shader.get())->UploadUniformFloat4(glm::vec4(m_Color, 1.0f), "u_Color"); 
 		Kure::Renderer::Submit(*m_VertexArray, *m_Shader, glm::translate(glm::mat4(1.0f), { 0.5f, 0.5f, 0.0f }));
 
 		Kure::Renderer::EndScene();
@@ -218,11 +257,14 @@ public:
 		ImGui::End();
 	}
 private:
-	Kure::Ref<Kure::VertexArray> m_VertexArray;
+	Kure::Ref<Kure::VertexArray> m_VertexArray; //triangle
 	Kure::Ref<Kure::Shader> m_Shader;
 
-	Kure::Ref<Kure::VertexArray> m_BoxVertexArray;
+	Kure::Ref<Kure::VertexArray> m_BoxVertexArray; //square
 	Kure::Ref<Kure::Shader> m_BlueShader;
+
+	Kure::Ref<Kure::Shader> m_TextureShader;
+	Kure::Ref<Kure::Texture> m_Texture;
 
 	Kure::Ref<Kure::Camera> m_Camera;
 	glm::vec3 m_CameraPos = glm::vec3(0.0f);

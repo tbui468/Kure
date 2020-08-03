@@ -20,7 +20,9 @@
 #include "Kure/Renderer/RenderCommand.h"
 #include "Kure/Renderer/Renderer.h"
 #include "Kure/Renderer/Camera.h"
+#include "Kure/Renderer/Texture.h"
 
+//ImGui
 #include "Kure/ImGui/ImGuiLayer.h"
 
 //platform specific

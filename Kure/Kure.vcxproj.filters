@@ -1,188 +1,228 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Kure">
-      <UniqueIdentifier>{BC30887C-A867-890D-5154-6F103D6A050F}</UniqueIdentifier>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Kure\Events">
-      <UniqueIdentifier>{203140B7-8CE6-B8AC-15DB-B283818FAFB0}</UniqueIdentifier>
+    <Filter Include="src\Kure">
+      <UniqueIdentifier>{335021CF-1F1D-7CDA-4836-6A823462B168}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Kure\ImGui">
-      <UniqueIdentifier>{E642B9A8-D2FA-FAF5-3B02-D45127D995E6}</UniqueIdentifier>
+    <Filter Include="src\Kure\Core">
+      <UniqueIdentifier>{6B8CE382-D74C-5FB9-A087-A8360C07A495}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Kure\Renderer">
-      <UniqueIdentifier>{E2070C7F-4EC8-87B5-1703-D1328382CC91}</UniqueIdentifier>
+    <Filter Include="src\Kure\Events">
+      <UniqueIdentifier>{B7641ACF-23F0-8793-2C01-0B88980BE493}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Platform">
-      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    <Filter Include="src\Kure\ImGui">
+      <UniqueIdentifier>{9DDFBFDF-89AD-B3E5-7241-240C5EAE8F4A}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Platform\OpenGL">
-      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
+    <Filter Include="src\Kure\Renderer">
+      <UniqueIdentifier>{397D41F6-A593-3F8C-EE0A-CBAD5A601014}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Platform\Windows">
-      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    <Filter Include="src\Platform">
+      <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\OpenGL">
+      <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\Windows">
+      <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor">
+      <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\stb">
+      <UniqueIdentifier>{8BD3C5A8-778B-07F6-E092-E051CC69A2E6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Kure.h" />
+    <ClInclude Include="src\Kure.h">
+      <Filter>src</Filter>
+    </ClInclude>
     <ClInclude Include="src\Kure\Application.h">
-      <Filter>Kure</Filter>
+      <Filter>src\Kure</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Core.h">
-      <Filter>Kure</Filter>
+      <Filter>src\Kure</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Kure\Core\TimeStep.h">
+      <Filter>src\Kure\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\EntryPoint.h">
-      <Filter>Kure</Filter>
+      <Filter>src\Kure</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Events\ApplicationEvent.h">
-      <Filter>Kure\Events</Filter>
+      <Filter>src\Kure\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Events\Event.h">
-      <Filter>Kure\Events</Filter>
+      <Filter>src\Kure\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Events\KeyEvent.h">
-      <Filter>Kure\Events</Filter>
+      <Filter>src\Kure\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Events\MouseEvent.h">
-      <Filter>Kure\Events</Filter>
+      <Filter>src\Kure\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\ImGui\ImGuiLayer.h">
-      <Filter>Kure\ImGui</Filter>
+      <Filter>src\Kure\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Input.h">
-      <Filter>Kure</Filter>
+      <Filter>src\Kure</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\KeyCodes.h">
-      <Filter>Kure</Filter>
+      <Filter>src\Kure</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Layer.h">
-      <Filter>Kure</Filter>
+      <Filter>src\Kure</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\LayerStack.h">
-      <Filter>Kure</Filter>
+      <Filter>src\Kure</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Log.h">
-      <Filter>Kure</Filter>
+      <Filter>src\Kure</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\MouseButtonCodes.h">
-      <Filter>Kure</Filter>
+      <Filter>src\Kure</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Renderer\Buffer.h">
-      <Filter>Kure\Renderer</Filter>
+      <Filter>src\Kure\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Renderer\Camera.h">
-      <Filter>Kure\Renderer</Filter>
+      <Filter>src\Kure\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Renderer\Context.h">
-      <Filter>Kure\Renderer</Filter>
+      <Filter>src\Kure\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Renderer\OrthographicCamera.h">
-      <Filter>Kure\Renderer</Filter>
+      <Filter>src\Kure\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Renderer\RenderCommand.h">
-      <Filter>Kure\Renderer</Filter>
+      <Filter>src\Kure\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Renderer\Renderer.h">
-      <Filter>Kure\Renderer</Filter>
+      <Filter>src\Kure\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Renderer\RendererAPI.h">
-      <Filter>Kure\Renderer</Filter>
+      <Filter>src\Kure\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Renderer\Shader.h">
-      <Filter>Kure\Renderer</Filter>
+      <Filter>src\Kure\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Kure\Renderer\Texture.h">
+      <Filter>src\Kure\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Renderer\VertexArray.h">
-      <Filter>Kure\Renderer</Filter>
+      <Filter>src\Kure\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Window.h">
-      <Filter>Kure</Filter>
+      <Filter>src\Kure</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\WindowsInput.h">
-      <Filter>Kure</Filter>
+      <Filter>src\Kure</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
-      <Filter>Platform\OpenGL</Filter>
+      <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
-      <Filter>Platform\OpenGL</Filter>
+      <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
-      <Filter>Platform\OpenGL</Filter>
+      <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
-      <Filter>Platform\OpenGL</Filter>
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
+      <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
-      <Filter>Platform\OpenGL</Filter>
+      <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
-      <Filter>Platform\Windows</Filter>
+      <Filter>src\Platform\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="src\krpch.h" />
-    <ClInclude Include="src\Kure\Core\TimeStep.h" />
+    <ClInclude Include="src\krpch.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\stb\stb_image.h">
+      <Filter>vendor\stb</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Kure\Application.cpp">
-      <Filter>Kure</Filter>
+      <Filter>src\Kure</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\ImGui\ImGuiBuild.cpp">
-      <Filter>Kure\ImGui</Filter>
+      <Filter>src\Kure\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\ImGui\ImGuiLayer.cpp">
-      <Filter>Kure\ImGui</Filter>
+      <Filter>src\Kure\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\Layer.cpp">
-      <Filter>Kure</Filter>
+      <Filter>src\Kure</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\LayerStack.cpp">
-      <Filter>Kure</Filter>
+      <Filter>src\Kure</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\Log.cpp">
-      <Filter>Kure</Filter>
+      <Filter>src\Kure</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\Renderer\Buffer.cpp">
-      <Filter>Kure\Renderer</Filter>
+      <Filter>src\Kure\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Kure\Renderer\Camera.cpp">
+      <Filter>src\Kure\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\Renderer\OrthographicCamera.cpp">
-      <Filter>Kure\Renderer</Filter>
+      <Filter>src\Kure\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\Renderer\RenderCommand.cpp">
-      <Filter>Kure\Renderer</Filter>
+      <Filter>src\Kure\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\Renderer\Renderer.cpp">
-      <Filter>Kure\Renderer</Filter>
+      <Filter>src\Kure\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\Renderer\RendererAPI.cpp">
-      <Filter>Kure\Renderer</Filter>
+      <Filter>src\Kure\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\Renderer\Shader.cpp">
-      <Filter>Kure\Renderer</Filter>
+      <Filter>src\Kure\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Kure\Renderer\Texture.cpp">
+      <Filter>src\Kure\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\Renderer\VertexArray.cpp">
-      <Filter>Kure\Renderer</Filter>
+      <Filter>src\Kure\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\WindowsInput.cpp">
-      <Filter>Kure</Filter>
+      <Filter>src\Kure</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
-      <Filter>Platform\OpenGL</Filter>
+      <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
-      <Filter>Platform\OpenGL</Filter>
+      <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
-      <Filter>Platform\OpenGL</Filter>
+      <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
-      <Filter>Platform\OpenGL</Filter>
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
-      <Filter>Platform\OpenGL</Filter>
+      <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
-      <Filter>Platform\Windows</Filter>
+      <Filter>src\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\krpch.cpp" />
-    <ClCompile Include="src\Kure\Renderer\Camera.cpp" />
+    <ClCompile Include="src\krpch.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\stb\stb_image.cpp">
+      <Filter>vendor\stb</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

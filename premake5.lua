@@ -18,6 +18,7 @@ IncludeDir["GLFW"] = "Kure/vendor/GLFW/include"
 IncludeDir["glad"] = "Kure/vendor/glad/include"
 IncludeDir["ImGui"] = "Kure/vendor/ImGui"
 IncludeDir["glm"] = "Kure/vendor/glm"
+IncludeDir["stb"] = "Kure/vendor/stb"
 
 --this includes the premake5 file in that directory
 --essentially copy and pasted into this premake5 file
@@ -43,6 +44,8 @@ project "Kure"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb/**.h",
+		"%{prj.name}/vendor/stb/**.cpp"
 	}
 
 	includedirs
@@ -52,7 +55,8 @@ project "Kure"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb}"
 	}
 
 	--these are projects we link
