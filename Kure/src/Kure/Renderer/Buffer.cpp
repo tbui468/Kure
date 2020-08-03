@@ -9,10 +9,10 @@ namespace Kure {
 
 //create functions for vertex and index buffer here based on rendererAPI
 
-	VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size) {
+	Ref<VertexBuffer> VertexBuffer::Create(float* vertices, uint32_t size) {
 		switch (Renderer::GetAPI()) {
 		case RendererAPI::API::None:   KR_CORE_ASSERT(false, "Renderer API not specified"); return nullptr;
-		case RendererAPI::API::OpenGL:   return new OpenGLVertexBuffer(vertices, size);
+		case RendererAPI::API::OpenGL:   return std::make_shared<OpenGLVertexBuffer>(vertices, size);
 		}
 
 		KR_CORE_ASSERT(false, "Specified Renderer API not defined!");
@@ -20,10 +20,10 @@ namespace Kure {
 	}
 
 
-	IndexBuffer* IndexBuffer::Create(unsigned int* indices, uint32_t count) {
+	Ref<IndexBuffer> IndexBuffer::Create(unsigned int* indices, uint32_t count) {
 		switch (Renderer::GetAPI()) {
 		case RendererAPI::API::None:   KR_CORE_ASSERT(false, "Renderer API not specified"); return nullptr;
-		case RendererAPI::API::OpenGL:   return new OpenGLIndexBuffer(indices, count);
+		case RendererAPI::API::OpenGL:   return std::make_shared<OpenGLIndexBuffer>(indices, count);
 		}
 
 		KR_CORE_ASSERT(false, "Specified Renderer API not defined!");

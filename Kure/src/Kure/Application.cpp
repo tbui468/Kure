@@ -8,6 +8,8 @@
 #include <glfw/glfw3.h>
 #include "Kure/Core/TimeStep.h"
 
+#include "Kure/Renderer/Renderer.h"
+
 
 
 
@@ -25,6 +27,8 @@ namespace Kure {
 		m_Window->SetEventCallback(KR_BIND_EVENT_FN(Application::OnEvent));
 
 		m_Window->SetVSync(true);
+
+		Renderer::Init();
 
 		//default gui for debugging
 		m_ImGuiLayer = new ImGuiLayer();

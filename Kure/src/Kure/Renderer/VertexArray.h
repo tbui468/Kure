@@ -2,6 +2,7 @@
 
 #include <memory>
 #include "Buffer.h"
+#include "Kure/Core.h"
 
 namespace Kure {
 
@@ -14,7 +15,7 @@ namespace Kure {
 		virtual void AddVertexBuffer(const Ref<VertexBuffer>& vertexbuffer) = 0;
 		virtual void SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer) = 0;
 		virtual const Ref<IndexBuffer>& GetIndexBuffer() const = 0;
-		static VertexArray* Create();
+		static Ref<VertexArray> Create();
 	};
 
 

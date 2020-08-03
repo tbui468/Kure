@@ -17,7 +17,7 @@ public:
 
 
 		//create vertex array (OpenGL only)		
-		m_VertexArray.reset(Kure::VertexArray::Create());
+		m_VertexArray = Kure::VertexArray::Create();
 
 
 		float vertices[3 * 7] = {
@@ -30,7 +30,7 @@ public:
 		//Why are we creating memory on the heap with pointers???  Why not the stack???
 		//is it because the buffers are very large?
 		Kure::Ref<Kure::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(Kure::VertexBuffer::Create(vertices, sizeof(vertices))); //reset allows you to set a managed pointer to a raw pointer
+		vertexBuffer = Kure::VertexBuffer::Create(vertices, sizeof(vertices));
 		Kure::BufferLayout layout = {
 			{Kure::ShaderDataType::Float3, "a_location"},
 			{Kure::ShaderDataType::Float4, "a_color"}
@@ -41,14 +41,14 @@ public:
 		//create index buffer
 		Kure::Ref<Kure::IndexBuffer> indexBuffer;
 		unsigned int indices[3] = { 0 , 1, 2 };
-		indexBuffer.reset(Kure::IndexBuffer::Create(indices, 3));
+		indexBuffer = Kure::IndexBuffer::Create(indices, 3);
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
 
 
 
 		//second box object to draw
-		m_BoxVertexArray.reset(Kure::VertexArray::Create());
+		m_BoxVertexArray = Kure::VertexArray::Create();
 
 		float boxVertices[5 * 4] = {
 			-0.75f, -0.75f, 0.0f, 0.0f, 0.0f, 
@@ -58,7 +58,7 @@ public:
 		};
 
 		Kure::Ref<Kure::VertexBuffer> boxVertexBuffer;
-		boxVertexBuffer.reset(Kure::VertexBuffer::Create(boxVertices, sizeof(boxVertices)));
+		boxVertexBuffer = Kure::VertexBuffer::Create(boxVertices, sizeof(boxVertices));
 		Kure::BufferLayout boxLayout = {
 			{Kure::ShaderDataType::Float3, "a_location"},
 			{Kure::ShaderDataType::Float2, "a_texCoord"}
@@ -68,7 +68,7 @@ public:
 
 		Kure::Ref<Kure::IndexBuffer> boxIndexBuffer;
 		unsigned int boxIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		boxIndexBuffer.reset(Kure::IndexBuffer::Create(boxIndices, 6));
+		boxIndexBuffer = Kure::IndexBuffer::Create(boxIndices, 6);
 		m_BoxVertexArray->SetIndexBuffer(boxIndexBuffer);
 
 		//triangle shader
@@ -105,7 +105,7 @@ public:
 
 		)";
 		//create shader
-		m_Shader.reset(Kure::Shader::Create(vertexSrc, fragmentSrc));
+		m_Shader = Kure::Shader::Create(vertexSrc, fragmentSrc);
 
 
 		//define our blue box shaders
@@ -175,12 +175,14 @@ public:
 
 		)";
 
+		m_TextureShader = Kure::Shader::Create(textureVertexSrc, textureFragmentSrc);
+
+
 		m_Texture = Kure::Texture2D::Create("assets/textures/texture.png");
-		m_Texture->Bind(0);
-		m_TextureShader.reset(Kure::Shader::Create(textureVertexSrc, textureFragmentSrc));
+		m_AlphaTexture = Kure::Texture2D::Create("assets/textures/squaresTexture.png");
 		dynamic_cast<Kure::OpenGLShader*>(m_TextureShader.get())->UploadUniformInt(0, "u_Texture");  //upload texture
 		//set up camera
-		m_Camera.reset(Kure::Camera::Create(-1.6f, 1.6f, -.9f, .9f, -1.0f, 1.0f));
+		m_Camera = Kure::Camera::Create(-1.6f, 1.6f, -.9f, .9f, -1.0f, 1.0f);
 	}
 
 	void OnUpdate(Kure::TimeStep ts) override {
@@ -195,9 +197,12 @@ public:
 //		m_BlueShader->Bind();
 //		dynamic_cast<Kure::OpenGLShader*>(m_BlueShader.get())->UploadUniformFloat4(glm::vec4(m_Color, 1.0f), "u_Color"); 
 //		m_TextureShader->Bind();
-		Kure::Renderer::Submit(*m_BoxVertexArray, *m_TextureShader, glm::rotate(glm::mat4(1.0f), m_Angle, { 0.0f, 0.0f, 1.0f }));
+		m_Texture->Bind();
+		Kure::Renderer::Submit(*m_BoxVertexArray, glm::rotate(glm::mat4(1.0f), m_Angle, { 0.0f, 0.0f, 1.0f }), *m_TextureShader);
+		m_AlphaTexture->Bind();
+		Kure::Renderer::Submit(*m_BoxVertexArray, glm::rotate(glm::mat4(1.0f), m_Angle, { 0.0f, 0.0f, 1.0f }), *m_TextureShader);
 
-		Kure::Renderer::Submit(*m_VertexArray, *m_Shader, glm::translate(glm::mat4(1.0f), { 0.5f, 0.5f, 0.0f }));
+		Kure::Renderer::Submit(*m_VertexArray, glm::translate(glm::mat4(1.0f), { 0.5f, 0.5f, 0.0f }), *m_Shader);
 
 		Kure::Renderer::EndScene();
 
@@ -265,6 +270,7 @@ private:
 
 	Kure::Ref<Kure::Shader> m_TextureShader;
 	Kure::Ref<Kure::Texture> m_Texture;
+	Kure::Ref<Kure::Texture> m_AlphaTexture;
 
 	Kure::Ref<Kure::Camera> m_Camera;
 	glm::vec3 m_CameraPos = glm::vec3(0.0f);

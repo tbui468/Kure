@@ -8,6 +8,9 @@ namespace Kure {
 	class RenderCommand
 	{
 	public:
+		inline static void Init() {
+			s_RendererAPI->Init();
+		}
 		inline static void DrawIndexed(const VertexArray& vertexArray) {
 			s_RendererAPI->DrawIndexed(vertexArray);
 		}

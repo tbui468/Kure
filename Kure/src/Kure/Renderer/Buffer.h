@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Kure/Log.h"
+#include "Kure/Core.h"
 
 namespace Kure {
 
@@ -90,7 +91,7 @@ namespace Kure {
 		virtual void Unbind() const = 0;
 		virtual void SetLayout(const BufferLayout& layout) = 0;
 		virtual const BufferLayout& GetLayout() const = 0;
-		static VertexBuffer* Create(float* vertices, uint32_t size);
+		static Ref<VertexBuffer> Create(float* vertices, uint32_t size);
 	};
 
 	class IndexBuffer {
@@ -99,7 +100,7 @@ namespace Kure {
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;
 		virtual uint32_t GetCount() const = 0;
-		static IndexBuffer* Create(unsigned int* indices, uint32_t count);
+		static Ref<IndexBuffer> Create(unsigned int* indices, uint32_t count);
 	};
 
 }
