@@ -156,6 +156,7 @@
     <ClInclude Include="src\Kure\LayerStack.h" />
     <ClInclude Include="src\Kure\Log.h" />
     <ClInclude Include="src\Kure\MouseButtonCodes.h" />
+    <ClInclude Include="src\Kure\OrthographicCameraController.h" />
     <ClInclude Include="src\Kure\Renderer\Buffer.h" />
     <ClInclude Include="src\Kure\Renderer\Camera.h" />
     <ClInclude Include="src\Kure\Renderer\Context.h" />
@@ -185,6 +186,7 @@
     <ClCompile Include="src\Kure\Layer.cpp" />
     <ClCompile Include="src\Kure\LayerStack.cpp" />
     <ClCompile Include="src\Kure\Log.cpp" />
+    <ClCompile Include="src\Kure\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Kure\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Kure\Renderer\Camera.cpp" />
     <ClCompile Include="src\Kure\Renderer\OrthographicCamera.cpp" />

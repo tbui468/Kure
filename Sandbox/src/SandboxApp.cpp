@@ -16,6 +16,9 @@ public:
 	ExampleLayer() : Layer("Example") {
 
 
+		m_CameraController.reset(new Kure::OrthographicCameraController(1280.0f / 720.0f, true));
+
+
 		//create vertex array (OpenGL only)		
 		m_VertexArray = Kure::VertexArray::Create();
 
@@ -105,7 +108,7 @@ public:
 
 		)";
 		//create shader
-		m_Shader = Kure::Shader::Create(vertexSrc, fragmentSrc);
+		m_Shader = Kure::Shader::Create("texturename", vertexSrc, fragmentSrc);
 
 
 		//define our blue box shaders
@@ -140,108 +143,44 @@ public:
 //		m_BlueShader.reset(Kure::Shader::Create(blueVertexSrc, blueFragmentSrc));
 
 
-		//define our texture shader
-		std::string textureVertexSrc = R"(
-		#version 330 core 
-		
-		layout(location = 0) in vec3 a_Position;
-		layout(location = 1) in vec2 a_TexCoord;
 
-		out vec2 v_TexCoord;
+		m_ShaderLibrary.Load("TextureShader", "assets/shaders/Texture.glsl");
 
-		uniform mat4 u_ViewProjMatrix;
-		uniform mat4 u_Transform;
-	
-		void main() {
-			gl_Position = u_ViewProjMatrix * u_Transform * vec4(a_Position, 1.0);
-			v_TexCoord = a_TexCoord;
-		}
-
-		)";
-
-
-		std::string textureFragmentSrc = R"(
-		#version 330 core
-
-		layout(location = 0) out vec4 color;	
-			
-		in vec2 v_TexCoord;
-
-		uniform sampler2D u_Texture;
-	
-		void main() {
-			color = texture(u_Texture, v_TexCoord);
-		}
-
-		)";
-
-		m_TextureShader = Kure::Shader::Create(textureVertexSrc, textureFragmentSrc);
-
+		auto textureShader = m_ShaderLibrary.Get("TextureShader");
 
 		m_Texture = Kure::Texture2D::Create("assets/textures/texture.png");
 		m_AlphaTexture = Kure::Texture2D::Create("assets/textures/squaresTexture.png");
-		dynamic_cast<Kure::OpenGLShader*>(m_TextureShader.get())->UploadUniformInt(0, "u_Texture");  //upload texture
+		dynamic_cast<Kure::OpenGLShader*>(textureShader.get())->UploadUniformInt(0, "u_Texture");  //upload texture
 		//set up camera
-		m_Camera = Kure::Camera::Create(-1.6f, 1.6f, -.9f, .9f, -1.0f, 1.0f);
 	}
 
 	void OnUpdate(Kure::TimeStep ts) override {
-//		m_Angle += 1.0f * ts;
+
+		m_CameraController->OnUpdate(ts);
+
 		//Render commands here
 		Kure::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 		Kure::RenderCommand::Clear();
 
-		Kure::Renderer::BeginScene(*m_Camera);
+		Kure::Renderer::BeginScene(m_CameraController->GetCamera());
 
-		//we need a way to upload uinforms too
-//		m_BlueShader->Bind();
-//		dynamic_cast<Kure::OpenGLShader*>(m_BlueShader.get())->UploadUniformFloat4(glm::vec4(m_Color, 1.0f), "u_Color"); 
-//		m_TextureShader->Bind();
+		auto textureShader = m_ShaderLibrary.Get("TextureShader");
+
 		m_Texture->Bind();
-		Kure::Renderer::Submit(*m_BoxVertexArray, glm::rotate(glm::mat4(1.0f), m_Angle, { 0.0f, 0.0f, 1.0f }), *m_TextureShader);
+		Kure::Renderer::Submit(*m_BoxVertexArray, glm::rotate(glm::mat4(1.0f), m_Angle, { 0.0f, 0.0f, 1.0f }), *textureShader);
 		m_AlphaTexture->Bind();
-		Kure::Renderer::Submit(*m_BoxVertexArray, glm::rotate(glm::mat4(1.0f), m_Angle, { 0.0f, 0.0f, 1.0f }), *m_TextureShader);
+		Kure::Renderer::Submit(*m_BoxVertexArray, glm::rotate(glm::mat4(1.0f), m_Angle, { 0.0f, 0.0f, 1.0f }), *textureShader);
 
 		Kure::Renderer::Submit(*m_VertexArray, glm::translate(glm::mat4(1.0f), { 0.5f, 0.5f, 0.0f }), *m_Shader);
 
 		Kure::Renderer::EndScene();
 
-		///////////////////////////handle user inputs////////////////////
-
-		if (Kure::Input::IsKeyPressed(KR_KEY_A)) {
-			m_CameraPos.x -= m_CameraSpeed * ts;
-		}
-		else if (Kure::Input::IsKeyPressed(KR_KEY_D)) {
-			m_CameraPos.x += m_CameraSpeed * ts;
-		}
-		if (Kure::Input::IsKeyPressed(KR_KEY_W)) {
-			m_CameraPos.y += m_CameraSpeed * ts;
-		}
-		else if (Kure::Input::IsKeyPressed(KR_KEY_S)) {
-			m_CameraPos.y -= m_CameraSpeed * ts;
-		}
-		if (Kure::Input::IsKeyPressed(KR_KEY_Q)) {
-			m_CameraAngle.z += m_CameraRotSpeed * ts;
-		}
-		else if (Kure::Input::IsKeyPressed(KR_KEY_E)) {
-			m_CameraAngle.z -= m_CameraRotSpeed * ts;
-		}
-
-		if (Kure::Input::IsKeyPressed(KR_KEY_K)) {
-			m_Color.g +=  ts;
-		}
-		else if (Kure::Input::IsKeyPressed(KR_KEY_L)) {
-			m_Color.g -=  ts;
-		}
-
-		///////////////////////////////////////////////////////////////
-
-		m_Camera->SetPosition(m_CameraPos);
-		m_Camera->SetOrientation(m_CameraAngle);
 	}
 
 	void OnEvent(Kure::Event& event) override {
-		//		KR_INFO("{0}", event);
+
+		m_CameraController->OnEvent(event);
+
 		if (event.GetEventType() == Kure::EventType::KeyPressed)
 		{
 			Kure::KeyPressedEvent* e = (Kure::KeyPressedEvent*) & event;
@@ -262,22 +201,20 @@ public:
 		ImGui::End();
 	}
 private:
+	Kure::ShaderLibrary m_ShaderLibrary;
 	Kure::Ref<Kure::VertexArray> m_VertexArray; //triangle
 	Kure::Ref<Kure::Shader> m_Shader;
 
 	Kure::Ref<Kure::VertexArray> m_BoxVertexArray; //square
 	Kure::Ref<Kure::Shader> m_BlueShader;
 
-	Kure::Ref<Kure::Shader> m_TextureShader;
+	//Kure::Ref<Kure::Shader> m_TextureShader;
 	Kure::Ref<Kure::Texture> m_Texture;
 	Kure::Ref<Kure::Texture> m_AlphaTexture;
 
-	Kure::Ref<Kure::Camera> m_Camera;
-	glm::vec3 m_CameraPos = glm::vec3(0.0f);
-	glm::vec3 m_CameraAngle = glm::vec3(0.0f);
-	float m_CameraSpeed = 1.0f;
-	float m_CameraRotSpeed = 5.0f;
-	float m_Angle = 0.0f;
+	float m_Angle = 0.0f; //angle of rotatation for shapes (NOT CAMERA)
+
+	Kure::Ref<Kure::OrthographicCameraController> m_CameraController;
 	glm::vec3 m_Color = glm::vec3(1.0f, 0.0f, 1.0f);
 };
 

@@ -84,6 +84,9 @@
     <ClInclude Include="src\Kure\MouseButtonCodes.h">
       <Filter>src\Kure</Filter>
     </ClInclude>
+    <ClInclude Include="src\Kure\OrthographicCameraController.h">
+      <Filter>src\Kure</Filter>
+    </ClInclude>
     <ClInclude Include="src\Kure\Renderer\Buffer.h">
       <Filter>src\Kure\Renderer</Filter>
     </ClInclude>
@@ -165,6 +168,9 @@
       <Filter>src\Kure</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\Log.cpp">
+      <Filter>src\Kure</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Kure\OrthographicCameraController.cpp">
       <Filter>src\Kure</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\Renderer\Buffer.cpp">

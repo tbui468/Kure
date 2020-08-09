@@ -8,6 +8,7 @@
 #include "Kure/Log.h"
 
 #include "Kure/Core/TimeStep.h"
+#include "Kure/OrthographicCameraController.h"
 
 #include "Kure/Input.h"
 #include "Kure/KeyCodes.h"
