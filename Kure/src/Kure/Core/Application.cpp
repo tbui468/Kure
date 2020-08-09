@@ -1,9 +1,9 @@
 #include "krpch.h"
 
-#include "Application.h"
+#include "Kure/Core/Application.h"
 
-#include "Input.h"
-#include "Kure/Log.h"
+#include "Kure/Core/Input.h"
+#include "Kure/Core/Log.h"
 
 #include <glfw/glfw3.h>
 #include "Kure/Core/TimeStep.h"
@@ -51,6 +51,7 @@ namespace Kure {
 	void Application::OnEvent(Event& e) {
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(KR_BIND_EVENT_FN(Application::OnWindowClose));
+		dispatcher.Dispatch<WindowResizedEvent>(KR_BIND_EVENT_FN(Application::OnWindowResize));
 
 		//handle events from end() to begin()
 		//break loop if event is handled by a layer
@@ -68,8 +69,10 @@ namespace Kure {
 			TimeStep ts = time - m_lastFrameTime;
 			m_lastFrameTime = time;
 
-			for (Layer* layer : m_LayerStack) {
-				layer->OnUpdate(ts); //pass in timestep here
+			if (!m_Minimized) {
+				for (Layer* layer : m_LayerStack) {
+					layer->OnUpdate(ts); //pass in timestep here
+				}
 			}
 
 
@@ -88,6 +91,20 @@ namespace Kure {
 	bool Application::OnWindowClose(WindowCloseEvent& e) {
 		m_Running = false;
 		return true;
+	}
+
+
+	bool Application::OnWindowResize(WindowResizedEvent& e) {
+		if (e.GetHeight() == 0 || e.GetWidth() == 0) {
+			m_Minimized = true;
+			return false;
+		}
+
+		m_Minimized = false;
+
+		Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+
+		return false; //we want all layers to see this event
 	}
 
 

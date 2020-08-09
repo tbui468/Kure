@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Kure/Core.h"
-#include "Layer.h"
+#include "Kure/Core/Core.h"
+#include "Kure/Core/Layer.h"
 
 #include <vector>
 

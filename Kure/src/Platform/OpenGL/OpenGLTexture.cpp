@@ -1,6 +1,6 @@
 #include "krpch.h"
-#include "OpenGLTexture.h"
-#include "Kure/Log.h"
+#include "Platform/OpenGL/OpenGLTexture.h"
+#include "Kure/Core/Log.h"
 
 #include <glad/glad.h>
 #include <stb_image.h>

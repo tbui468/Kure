@@ -1,5 +1,5 @@
 #pragma once
-#include "Kure/Core.h"
+#include "Kure/Core/Core.h"
 
 namespace Kure {
 

@@ -3,16 +3,16 @@
 //for use by Kure applications
 #include "krpch.h" //did he add this line in his code???
 
-#include "Kure/Application.h"
-#include "Kure/Layer.h" //already included by Application.h, but here for clarity
-#include "Kure/Log.h"
+#include "Kure/Core/Application.h"
+#include "Kure/Core/Layer.h" //already included by Application.h, but here for clarity
+#include "Kure/Core/Log.h"
 
 #include "Kure/Core/TimeStep.h"
-#include "Kure/OrthographicCameraController.h"
+#include "Kure/Renderer/OrthographicCameraController.h"
 
-#include "Kure/Input.h"
-#include "Kure/KeyCodes.h"
-#include "Kure/MouseButtonCodes.h"
+#include "Kure/Core/Input.h"
+#include "Kure/Core/KeyCodes.h"
+#include "Kure/Core/MouseButtonCodes.h"
 
 //rendering
 #include "Kure/Renderer/Buffer.h"
@@ -31,5 +31,5 @@
 
 
 //-------entry point-------------
-#include "Kure/EntryPoint.h"
+#include "Kure/Core/EntryPoint.h"
 //-------------------------------

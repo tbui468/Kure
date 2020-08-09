@@ -1,7 +1,7 @@
 #pragma once
 
 #include <glm/glm.hpp>
-#include "Kure/Core.h"
+#include "Kure/Core/Core.h"
 
 namespace Kure {
 

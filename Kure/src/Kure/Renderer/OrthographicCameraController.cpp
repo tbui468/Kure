@@ -1,8 +1,8 @@
 #include "krpch.h"
-#include "OrthographicCameraController.h"
+#include "Kure/Renderer/OrthographicCameraController.h"
 
-#include "Kure/Input.h"
-#include "Kure/KeyCodes.h"
+#include "Kure/Core/Input.h"
+#include "Kure/Core/KeyCodes.h"
 
 namespace Kure {
 

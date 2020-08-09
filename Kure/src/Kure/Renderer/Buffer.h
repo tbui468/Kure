@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Kure/Log.h"
-#include "Kure/Core.h"
+#include "Kure/Core/Log.h"
+#include "Kure/Core/Core.h"
 
 namespace Kure {
 

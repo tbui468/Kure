@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Kure/Core.h"
+#include "Kure/Core/Core.h"
 #include "Kure/Events/Event.h"
 #include "Kure/Core/TimeStep.h"
 

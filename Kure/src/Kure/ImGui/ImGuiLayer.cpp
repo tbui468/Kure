@@ -1,16 +1,16 @@
 #include "krpch.h"
 
-#include "ImGuiLayer.h"
+#include "Kure/ImGui/ImGuiLayer.h"
 #include "imgui.h" //IMGUI_IMPL_API
 
 #include "examples/imgui_impl_glfw.h"
 #include "examples/imgui_impl_opengl3.h"
 
 
-#include "Kure/Application.h"
+#include "Kure/Core/Application.h"
 
 
-#include "Kure/Log.h"
+#include "Kure/Core/Log.h"
 
 //TEMPORARY - REMOVE LATER
 #include <GLFW/glfw3.h> 

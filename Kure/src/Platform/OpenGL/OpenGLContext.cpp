@@ -1,7 +1,7 @@
 #include "krpch.h"
 #include "OpenGLContext.h"
 
-#include "Kure/Log.h"
+#include "Kure/Core/Log.h"
 
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>

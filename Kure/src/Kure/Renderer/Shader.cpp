@@ -1,6 +1,6 @@
 #include "krpch.h"
-#include "Kure/Log.h"
-#include "Shader.h"
+#include "Kure/Core/Log.h"
+#include "Kure/Renderer/Shader.h"
 #include "Kure/Renderer/Renderer.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 

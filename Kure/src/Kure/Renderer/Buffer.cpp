@@ -1,7 +1,7 @@
 #include "krpch.h"
 #include "Buffer.h"
 
-#include "Kure/Log.h"
+#include "Kure/Core/Log.h"
 #include "Kure/Renderer/Renderer.h"
 #include "Platform/OpenGL/OpenGLBuffer.h"
 

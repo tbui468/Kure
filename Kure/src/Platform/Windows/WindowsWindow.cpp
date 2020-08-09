@@ -1,12 +1,12 @@
 #include "krpch.h"
-#include "WindowsWindow.h"
+#include "Platform/Windows/WindowsWindow.h"
 
 #include "Kure/Events/ApplicationEvent.h"
 #include "Kure/Events/KeyEvent.h"
 #include "Kure/Events/MouseEvent.h"
 #include "Platform/OpenGL/OpenGLContext.h"
 
-#include "Kure/Log.h"
+#include "Kure/Core/Log.h"
 
 
 

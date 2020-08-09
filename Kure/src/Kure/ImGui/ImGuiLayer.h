@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Kure/Layer.h"
+#include "Kure/Core/Layer.h"
 
 #include "Kure/Events/ApplicationEvent.h"
 #include "Kure/Events/KeyEvent.h"

@@ -39,17 +39,41 @@
     <ClInclude Include="src\Kure.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Kure\Application.h">
-      <Filter>src\Kure</Filter>
+    <ClInclude Include="src\Kure\Core\Application.h">
+      <Filter>src\Kure\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Kure\Core.h">
-      <Filter>src\Kure</Filter>
+    <ClInclude Include="src\Kure\Core\Core.h">
+      <Filter>src\Kure\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Kure\Core\EntryPoint.h">
+      <Filter>src\Kure\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Kure\Core\Input.h">
+      <Filter>src\Kure\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Kure\Core\KeyCodes.h">
+      <Filter>src\Kure\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Kure\Core\Layer.h">
+      <Filter>src\Kure\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Kure\Core\LayerStack.h">
+      <Filter>src\Kure\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Kure\Core\Log.h">
+      <Filter>src\Kure\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Kure\Core\MouseButtonCodes.h">
+      <Filter>src\Kure\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Core\TimeStep.h">
       <Filter>src\Kure\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Kure\EntryPoint.h">
-      <Filter>src\Kure</Filter>
+    <ClInclude Include="src\Kure\Core\Window.h">
+      <Filter>src\Kure\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Kure\Core\WindowsInput.h">
+      <Filter>src\Kure\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Events\ApplicationEvent.h">
       <Filter>src\Kure\Events</Filter>
@@ -66,27 +90,6 @@
     <ClInclude Include="src\Kure\ImGui\ImGuiLayer.h">
       <Filter>src\Kure\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\Kure\Input.h">
-      <Filter>src\Kure</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Kure\KeyCodes.h">
-      <Filter>src\Kure</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Kure\Layer.h">
-      <Filter>src\Kure</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Kure\LayerStack.h">
-      <Filter>src\Kure</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Kure\Log.h">
-      <Filter>src\Kure</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Kure\MouseButtonCodes.h">
-      <Filter>src\Kure</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Kure\OrthographicCameraController.h">
-      <Filter>src\Kure</Filter>
-    </ClInclude>
     <ClInclude Include="src\Kure\Renderer\Buffer.h">
       <Filter>src\Kure\Renderer</Filter>
     </ClInclude>
@@ -97,6 +100,9 @@
       <Filter>src\Kure\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Renderer\OrthographicCamera.h">
+      <Filter>src\Kure\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Kure\Renderer\OrthographicCameraController.h">
       <Filter>src\Kure\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Renderer\RenderCommand.h">
@@ -116,12 +122,6 @@
     </ClInclude>
     <ClInclude Include="src\Kure\Renderer\VertexArray.h">
       <Filter>src\Kure\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Kure\Window.h">
-      <Filter>src\Kure</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Kure\WindowsInput.h">
-      <Filter>src\Kure</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
@@ -152,26 +152,26 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Kure\Application.cpp">
-      <Filter>src\Kure</Filter>
+    <ClCompile Include="src\Kure\Core\Application.cpp">
+      <Filter>src\Kure\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Kure\Core\Layer.cpp">
+      <Filter>src\Kure\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Kure\Core\LayerStack.cpp">
+      <Filter>src\Kure\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Kure\Core\Log.cpp">
+      <Filter>src\Kure\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Kure\Core\WindowsInput.cpp">
+      <Filter>src\Kure\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\ImGui\ImGuiBuild.cpp">
       <Filter>src\Kure\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\ImGui\ImGuiLayer.cpp">
       <Filter>src\Kure\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Kure\Layer.cpp">
-      <Filter>src\Kure</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Kure\LayerStack.cpp">
-      <Filter>src\Kure</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Kure\Log.cpp">
-      <Filter>src\Kure</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Kure\OrthographicCameraController.cpp">
-      <Filter>src\Kure</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\Renderer\Buffer.cpp">
       <Filter>src\Kure\Renderer</Filter>
@@ -180,6 +180,9 @@
       <Filter>src\Kure\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\Renderer\OrthographicCamera.cpp">
+      <Filter>src\Kure\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Kure\Renderer\OrthographicCameraController.cpp">
       <Filter>src\Kure\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\Renderer\RenderCommand.cpp">
@@ -199,9 +202,6 @@
     </ClCompile>
     <ClCompile Include="src\Kure\Renderer\VertexArray.cpp">
       <Filter>src\Kure\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Kure\WindowsInput.cpp">
-      <Filter>src\Kure</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>

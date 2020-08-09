@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Kure/Window.h"
+#include "Kure/Core/Window.h"
 #include "Kure/Renderer/Context.h"
 
 #include <GLFW/glfw3.h>

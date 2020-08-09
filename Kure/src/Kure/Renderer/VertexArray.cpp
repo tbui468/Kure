@@ -1,7 +1,7 @@
 #include "krpch.h"
-#include "VertexArray.h"
+#include "Kure/Renderer/VertexArray.h"
 
-#include "Kure/Log.h"
+#include "Kure/Core/Log.h"
 #include "Kure/Renderer/Renderer.h"
 #include "Platform/OpenGL/OpenGLVertexArray.h"
 

@@ -1,6 +1,6 @@
 #include "krpch.h"
 
-#include "Kure/Log.h"
+#include "Kure/Core/Log.h"
 
 #include "spdlog/sinks/stdout_color_sinks.h"
 

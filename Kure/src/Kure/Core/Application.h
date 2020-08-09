@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Core.h" //need this for KURE_API (which exports the class)
+#include "Kure/Core/Core.h" //need this for KURE_API (which exports the class)
 
-#include "Window.h"
-#include "Kure/LayerStack.h"
+#include "Kure/Core/Window.h"
+#include "Kure/Core/LayerStack.h"
 #include "Kure/ImGui/ImGuiLayer.h"
 
 namespace Kure {
@@ -22,10 +22,12 @@ namespace Kure {
 		void Run();
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
+		bool OnWindowResize(WindowResizedEvent& e);
 	private:
 		Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
+		bool m_Minimized = false;
 		LayerStack m_LayerStack;
 		static Application* s_Instance;
 		float m_lastFrameTime = 0.0f;

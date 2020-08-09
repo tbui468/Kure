@@ -1,7 +1,7 @@
 #pragma once
 
 #include "krpch.h"
-#include "Kure/Core.h"
+#include "Kure/Core/Core.h"
 #include "Kure/Events/Event.h"
 
 namespace Kure {

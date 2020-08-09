@@ -1,8 +1,8 @@
 #pragma once
 
 #include <memory>
-#include "Buffer.h"
-#include "Kure/Core.h"
+#include "Kure/Renderer/Buffer.h"
+#include "Kure/Core/Core.h"
 
 namespace Kure {
 
