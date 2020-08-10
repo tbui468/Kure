@@ -1,5 +1,6 @@
 #include "krpch.h"
 #include "Renderer.h"
+#include "Renderer2D.h"
 #include "RenderCommand.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
@@ -10,6 +11,7 @@ namespace Kure {
 
 	void Renderer::Init() {
 		RenderCommand::Init();
+		Renderer2D::Init();
 	}
 
 

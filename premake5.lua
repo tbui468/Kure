@@ -127,10 +127,6 @@ project "Sandbox"
 	filter "system:windows"
 		systemversion "latest"
 
-		defines
-		{
-			"KR_PLATFORM_WINDOWS"
-		}
 
 
 	filter "configurations:Debug"

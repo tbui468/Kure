@@ -15,8 +15,8 @@ namespace Kure {
 		OrthographicCameraController(float aspectRatio, bool rotation = false);
 		void OnUpdate(TimeStep ts);
 		void OnEvent(Event& event);
-		Camera& GetCamera() { return m_Camera; }
-		const Camera& GetCamera() const { return m_Camera; }
+		OrthographicCamera& GetCamera() { return m_Camera; }
+		const OrthographicCamera& GetCamera() const { return m_Camera; }
 	private:
 		bool OnMouseScrolled(MouseScrolledEvent& event);
 		bool OnWindowResized(WindowResizedEvent& event);

@@ -51,6 +51,7 @@ namespace Kure {
 
 	void OpenGLTexture2D::Bind(uint32_t slot) const {
 		glBindTextureUnit(slot, m_RendererID);
+		//glBindTexture(slot, m_RendererID);
 	}
 
 

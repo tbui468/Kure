@@ -20,6 +20,7 @@
 #include "Kure/Renderer/Shader.h"
 #include "Kure/Renderer/RenderCommand.h"
 #include "Kure/Renderer/Renderer.h"
+#include "Kure/Renderer/Renderer2D.h"
 #include "Kure/Renderer/Camera.h"
 #include "Kure/Renderer/Texture.h"
 
@@ -31,5 +32,5 @@
 
 
 //-------entry point-------------
-#include "Kure/Core/EntryPoint.h"
+//currently in SandboxApp.cpp
 //-------------------------------

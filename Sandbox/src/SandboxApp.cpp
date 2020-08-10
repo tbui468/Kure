@@ -5,9 +5,10 @@
 #include "ImGui/imgui.h"
 #include <glm/gtc/matrix_transform.hpp>
 
-class GUILayer : public Kure::ImGuiLayer {
+#include "Sandbox2D.h"
 
-};
+
+#include "Kure/Core/EntryPoint.h"
 
 
 
@@ -223,7 +224,8 @@ class Sandbox : public Kure::Application
 {
 public:
 	Sandbox() {
-		PushLayer(new ExampleLayer());
+//		PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
 	}
 	~Sandbox() {
 
