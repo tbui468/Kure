@@ -7,10 +7,9 @@ Sandbox2D::Sandbox2D()
 
 
 void Sandbox2D::OnAttach() {
-	Kure::Renderer2D::Init();
+	m_Texture = Kure::Texture2D::Create("assets/textures/texture.png");
 }
 void Sandbox2D::OnDetach() {
-	Kure::Renderer2D::Shutdown();
 }
 void Sandbox2D::OnUpdate(Kure::TimeStep ts) {
 	m_CameraController->OnUpdate(ts);
@@ -20,7 +19,9 @@ void Sandbox2D::OnUpdate(Kure::TimeStep ts) {
 	Kure::RenderCommand::Clear();
 
 	Kure::Renderer2D::BeginScene(m_CameraController->GetCamera());
-	Kure::Renderer2D::DrawQuad({ 0.0f, 0.0f }, { 1.0f, 1.0f }, m_Color);
+	Kure::Renderer2D::DrawQuad({ 0.0f, 0.5f }, 0.01f, { 1.0f, 1.0f }, m_Color);
+	Kure::Renderer2D::DrawQuad({ -0.7f, -0.1f }, 0.1f, { 2.0f, 0.8f }, { 0.5f, 0.2f, 0.8f, 1.0f });
+	Kure::Renderer2D::DrawQuad({ 0.5f, -0.5f, -.1f }, 0.01f, { 2.0f, 2.0f }, m_Texture);
 	Kure::Renderer2D::EndScene();
 
 //	dynamic_cast<Kure::OpenGLShader*>(m_FlatShader.get())->UploadUniformFloat4(m_Color, "u_Color");  //upload color

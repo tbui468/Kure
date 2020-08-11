@@ -14,6 +14,11 @@ namespace Kure {
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;
 
+		virtual void SetInt(int value, const std::string&  name) = 0;
+		virtual void SetFloat3(const glm::vec3& value, const std::string&  name) = 0;
+		virtual void SetFloat4(const glm::vec4& value, const std::string& name) = 0;
+		virtual void SetMat4(const glm::mat4& value, const std::string& name) = 0;
+
 		virtual const std::string& GetName() const = 0;
 
 		static Ref<Shader> Create(const std::string& filepath);
