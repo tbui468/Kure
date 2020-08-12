@@ -10,6 +10,9 @@
     <Filter Include="src\Kure\Core">
       <UniqueIdentifier>{6B8CE382-D74C-5FB9-A087-A8360C07A495}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Kure\Debug">
+      <UniqueIdentifier>{E97461DF-D542-55E5-BED6-C50BAA43314A}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Kure\Events">
       <UniqueIdentifier>{B7641ACF-23F0-8793-2C01-0B88980BE493}</UniqueIdentifier>
     </Filter>
@@ -75,6 +78,9 @@
     <ClInclude Include="src\Kure\Core\WindowsInput.h">
       <Filter>src\Kure\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Kure\Debug\Instrumentor.h">
+      <Filter>src\Kure\Debug</Filter>
+    </ClInclude>
     <ClInclude Include="src\Kure\Events\ApplicationEvent.h">
       <Filter>src\Kure\Events</Filter>
     </ClInclude>
@@ -109,6 +115,9 @@
       <Filter>src\Kure\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Renderer\Renderer.h">
+      <Filter>src\Kure\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Kure\Renderer\Renderer2D.h">
       <Filter>src\Kure\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Kure\Renderer\RendererAPI.h">
@@ -150,7 +159,6 @@
     <ClInclude Include="vendor\stb\stb_image.h">
       <Filter>vendor\stb</Filter>
     </ClInclude>
-    <ClInclude Include="src\Kure\Renderer\Renderer2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Kure\Core\Application.cpp">
@@ -192,6 +200,9 @@
     <ClCompile Include="src\Kure\Renderer\Renderer.cpp">
       <Filter>src\Kure\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Kure\Renderer\Renderer2D.cpp">
+      <Filter>src\Kure\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Kure\Renderer\RendererAPI.cpp">
       <Filter>src\Kure\Renderer</Filter>
     </ClCompile>
@@ -231,6 +242,5 @@
     <ClCompile Include="vendor\stb\stb_image.cpp">
       <Filter>vendor\stb</Filter>
     </ClCompile>
-    <ClCompile Include="src\Kure\Renderer\Renderer2D.cpp" />
   </ItemGroup>
 </Project>

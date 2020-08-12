@@ -31,6 +31,7 @@ namespace Kure {
 	}
 
 	void WindowsWindow::Init(const WindowProps& props) {
+		KR_PROFILE_FUNCTION();
 		m_Data.Title = props.Title;
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
@@ -137,15 +138,24 @@ namespace Kure {
 	}
 
 	void WindowsWindow::Shutdown() {
+		KR_PROFILE_FUNCTION();
 		glfwDestroyWindow(m_Window);
 	}
 
 	void WindowsWindow::OnUpdate() {
-		glfwPollEvents(); //this is where the callback functions we set in Init() are called by glfw
-		m_Context->SwapBuffers();
+		KR_PROFILE_FUNCTION();
+		{
+			KR_PROFILE_SCOPE("glfw poll event");
+			glfwPollEvents();
+		}
+		{
+			KR_PROFILE_SCOPE("glfw swap buffers");
+			m_Context->SwapBuffers();
+		}
 	}
 
 	void WindowsWindow::SetVSync(bool enabled) {
+		KR_PROFILE_FUNCTION();
 		if (enabled)
 			glfwSwapInterval(1);
 		else

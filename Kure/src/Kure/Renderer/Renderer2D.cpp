@@ -70,12 +70,52 @@ namespace Kure {
 
 	}
 
-	//solide color quads (set texture to solid white)
-	void Renderer2D::DrawQuad(const glm::vec2& position, float angle, const glm::vec2& size, const glm::vec4& color) {
-		DrawQuad({ position.x, position.y, 0.0f }, angle, size, color);
+
+	//axis aligned quads
+	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color) {
+		DrawQuad({ position.x, position.y, 0.0f }, size, color);
 	}
-	void Renderer2D::DrawQuad(const glm::vec3& position, float angle, const glm::vec2& size, const glm::vec4& color) {
+	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color) {
 		s_Data->CombinedShader->SetFloat4(color, "u_Color");  //upload color
+		s_Data->CombinedShader->SetFloat(1.0f, "u_TexScale");
+
+		s_Data->WhiteTexture->Bind(0); //bind a solid white texture
+
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
+
+
+		s_Data->CombinedShader->SetMat4(transform, "u_Transform");
+
+		s_Data->QuadVertexArray->Bind();
+		RenderCommand::DrawIndexed(*s_Data->QuadVertexArray);
+	}
+
+	
+	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<Texture2D>& texture, float texScale, const glm::vec4& tint) {
+		DrawQuad({ position.x, position.y, 0.0f }, size, texture, texScale, tint);
+	}
+	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture, float texScale, const glm::vec4& tint) {
+		s_Data->CombinedShader->SetFloat4(tint, "u_Color");  
+		s_Data->CombinedShader->SetFloat(texScale, "u_TexScale");
+
+		texture->Bind(0);
+
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
+
+		s_Data->CombinedShader->SetMat4(transform, "u_Transform");
+
+		s_Data->QuadVertexArray->Bind();
+		RenderCommand::DrawIndexed(*s_Data->QuadVertexArray);
+	}
+
+
+	//rotated quads
+	void Renderer2D::DrawRotatedQuad(const glm::vec2& position, float angle, const glm::vec2& size, const glm::vec4& color) {
+		DrawRotatedQuad({ position.x, position.y, 0.0f }, angle, size, color);
+	}
+	void Renderer2D::DrawRotatedQuad(const glm::vec3& position, float angle, const glm::vec2& size, const glm::vec4& color) {
+		s_Data->CombinedShader->SetFloat4(color, "u_Color");  //upload color
+		s_Data->CombinedShader->SetFloat(1.0f, "u_TexScale");
 
 		s_Data->WhiteTexture->Bind(0); //bind a solid white texture
 
@@ -90,12 +130,12 @@ namespace Kure {
 	}
 
 	
-	//texture quads (set color to solid white)
-	void Renderer2D::DrawQuad(const glm::vec2& position, float angle, const glm::vec2& size, const Ref<Texture2D>& texture) {
-		DrawQuad({ position.x, position.y, 0.0f }, angle, size, texture);
+	void Renderer2D::DrawRotatedQuad(const glm::vec2& position, float angle, const glm::vec2& size, const Ref<Texture2D>& texture, float texScale, const glm::vec4& tint) {
+		DrawRotatedQuad({ position.x, position.y, 0.0f }, angle, size, texture, texScale);
 	}
-	void Renderer2D::DrawQuad(const glm::vec3& position, float angle, const glm::vec2& size, const Ref<Texture2D>& texture) {
-		s_Data->CombinedShader->SetFloat4(glm::vec4(1.0f), "u_Color");  
+	void Renderer2D::DrawRotatedQuad(const glm::vec3& position, float angle, const glm::vec2& size, const Ref<Texture2D>& texture, float texScale, const glm::vec4& tint) {
+		s_Data->CombinedShader->SetFloat4(tint, "u_Color");  
+		s_Data->CombinedShader->SetFloat(texScale, "u_TexScale");
 
 		texture->Bind(0);
 

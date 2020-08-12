@@ -140,7 +140,6 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Kure\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Kure.h" />
     <ClInclude Include="src\Kure\Core\Application.h" />
     <ClInclude Include="src\Kure\Core\Core.h" />
@@ -154,6 +153,7 @@
     <ClInclude Include="src\Kure\Core\TimeStep.h" />
     <ClInclude Include="src\Kure\Core\Window.h" />
     <ClInclude Include="src\Kure\Core\WindowsInput.h" />
+    <ClInclude Include="src\Kure\Debug\Instrumentor.h" />
     <ClInclude Include="src\Kure\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Kure\Events\Event.h" />
     <ClInclude Include="src\Kure\Events\KeyEvent.h" />
@@ -166,6 +166,7 @@
     <ClInclude Include="src\Kure\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\Kure\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Kure\Renderer\Renderer.h" />
+    <ClInclude Include="src\Kure\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Kure\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Kure\Renderer\Shader.h" />
     <ClInclude Include="src\Kure\Renderer\Texture.h" />
@@ -181,7 +182,6 @@
     <ClInclude Include="vendor\stb\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Kure\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Kure\Core\Application.cpp" />
     <ClCompile Include="src\Kure\Core\Layer.cpp" />
     <ClCompile Include="src\Kure\Core\LayerStack.cpp" />
@@ -195,6 +195,7 @@
     <ClCompile Include="src\Kure\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Kure\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Kure\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Kure\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Kure\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Kure\Renderer\Shader.cpp" />
     <ClCompile Include="src\Kure\Renderer\Texture.cpp" />

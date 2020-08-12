@@ -24,6 +24,7 @@ namespace Kure {
 
 
 	OpenGLShader::OpenGLShader(const std::string& filepath) {
+		KR_PROFILE_FUNCTION();
 		std::string source = ReadFile(filepath);
 		std::unordered_map<GLenum, std::string> shaderSources = PreProcess(source);
 		Compile(shaderSources);
@@ -38,6 +39,8 @@ namespace Kure {
 
 	OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
 		: m_Name(name) {
+
+		KR_PROFILE_FUNCTION();
 		std::unordered_map<GLenum, std::string> shaderSources;
 		shaderSources[GL_VERTEX_SHADER] = vertexSrc;
 		shaderSources[GL_FRAGMENT_SHADER] = fragmentSrc;
@@ -46,6 +49,7 @@ namespace Kure {
 
 
 	std::string OpenGLShader::ReadFile(const std::string& filepath) {
+		KR_PROFILE_FUNCTION();
 		std::string result;
 		std::ifstream in(filepath, std::ios::in | std::ios::binary);
 		if (in) {
@@ -64,11 +68,12 @@ namespace Kure {
 
 	//split source file into different shaders
 	std::unordered_map< GLenum, std::string> OpenGLShader::PreProcess(const std::string& source) {
+		KR_PROFILE_FUNCTION();
 		std::unordered_map < GLenum, std::string> shaderSources;
 
-		const char* typeToken = "#type"; 
+		const char* typeToken = "#type";
 		const size_t typeTokenLength = strlen(typeToken);
-		size_t pos = source.find(typeToken, 0); 
+		size_t pos = source.find(typeToken, 0);
 		while (pos != std::string::npos) { //while there are matches for pos
 			size_t eol = source.find_first_of("\r\n", pos); //look from pos
 			KR_CORE_ASSERT(eol != std::string::npos, "Syntax error"); //???
@@ -79,7 +84,7 @@ namespace Kure {
 			size_t nextLinePos = source.find_first_not_of("\r\n", eol); //skip lines until we get to the actual glsl shader code
 			pos = source.find(typeToken, nextLinePos);  //pos is now location of next token
 			shaderSources[ShaderTypeFromString(type)] = source.substr(nextLinePos,
-					pos - (nextLinePos == std::string::npos ? source.size() - 1 : nextLinePos)); //length of substring is from nextLinePos to next token, or end of file
+				pos - (nextLinePos == std::string::npos ? source.size() - 1 : nextLinePos)); //length of substring is from nextLinePos to next token, or end of file
 		}
 
 		return shaderSources;
@@ -88,6 +93,7 @@ namespace Kure {
 
 	void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string>& shaderSources) {
 
+		KR_PROFILE_FUNCTION();
 		GLuint program = glCreateProgram();
 
 		KR_CORE_ASSERT(shaderSources.size() <= 2, "Only two shaders are supported");
@@ -174,26 +180,38 @@ namespace Kure {
 
 
 	void OpenGLShader::Bind() const {
+		KR_PROFILE_FUNCTION();
 		glUseProgram(m_RendererID);
 	}
 
 	void OpenGLShader::Unbind() const {
+		KR_PROFILE_FUNCTION();
 		glUseProgram(0);
 	}
 
 
 	void OpenGLShader::SetInt(int value, const std::string& name) {
+		KR_PROFILE_FUNCTION();
 		UploadUniformInt(value, name);
 	}
 
 
+	void OpenGLShader::SetFloat(float value, const std::string& name) {
+		KR_PROFILE_FUNCTION();
+		UploadUniformFloat(value, name);
+	}
+
+
 	void OpenGLShader::SetFloat3(const glm::vec3& value, const std::string& name) {
+		KR_PROFILE_FUNCTION();
 		UploadUniformFloat3(value, name);
 	}
 	void OpenGLShader::SetFloat4(const glm::vec4& value, const std::string& name) {
+		KR_PROFILE_FUNCTION();
 		UploadUniformFloat4(value, name);
 	}
 	void OpenGLShader::SetMat4(const glm::mat4& value, const std::string& name) {
+		KR_PROFILE_FUNCTION();
 		UploadUniformMat4(value, name);
 	}
 

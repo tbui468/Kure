@@ -20,6 +20,10 @@ namespace Kure {
 
 
 	Application::Application() {
+	
+		KR_PROFILE_FUNCTION();
+
+
 		KR_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
@@ -36,19 +40,23 @@ namespace Kure {
 	}
 
 	Application::~Application() {
+		KR_PROFILE_FUNCTION();
 	}
 
 	void Application::PushLayer(Layer* layer) {
+		KR_PROFILE_FUNCTION();
 		m_LayerStack.PushLayer(layer);
 		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* overlay) {
+		KR_PROFILE_FUNCTION();
 		m_LayerStack.PushOverlay(overlay);
 		overlay->OnAttach();
 	}
 
 	void Application::OnEvent(Event& e) {
+		KR_PROFILE_FUNCTION();
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(KR_BIND_EVENT_FN(Application::OnWindowClose));
 		dispatcher.Dispatch<WindowResizedEvent>(KR_BIND_EVENT_FN(Application::OnWindowResize));
@@ -63,28 +71,36 @@ namespace Kure {
 	}
 
 	void Application::Run() {
-
+		KR_PROFILE_FUNCTION();
 		while (m_Running) {
+			KR_PROFILE_SCOPE("Run Loop");
 			float time = (float)glfwGetTime();
 			TimeStep ts = time - m_lastFrameTime;
 			m_lastFrameTime = time;
 
-			if (!m_Minimized) {
-				for (Layer* layer : m_LayerStack) {
-					layer->OnUpdate(ts); //pass in timestep here
+			{
+				KR_PROFILE_SCOPE("LayerStack OnUpdate");
+				if (!m_Minimized) {
+					for (Layer* layer : m_LayerStack) {
+						layer->OnUpdate(ts); //pass in timestep here
+					}
 				}
 			}
 
-
-			m_ImGuiLayer->Begin();
-			for (Layer* layer : m_LayerStack) {
-				layer->OnImGuiRender();
+			{
+				KR_PROFILE_SCOPE("Layerstack OnImGuiRender");
+				m_ImGuiLayer->Begin();
+				for (Layer* layer : m_LayerStack) {
+					layer->OnImGuiRender();
+				}
+				m_ImGuiLayer->End();
 			}
-			m_ImGuiLayer->End();
 
 
-
-			m_Window->OnUpdate(); //event pollling and swap buffers
+			{
+				KR_PROFILE_SCOPE("Run Loop window update");
+				m_Window->OnUpdate(); //event pollling and swap buffers
+			}
 		}
 	}
 
@@ -95,6 +111,7 @@ namespace Kure {
 
 
 	bool Application::OnWindowResize(WindowResizedEvent& e) {
+		KR_PROFILE_FUNCTION();
 		if (e.GetHeight() == 0 || e.GetWidth() == 0) {
 			m_Minimized = true;
 			return false;

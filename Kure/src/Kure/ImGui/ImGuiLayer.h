@@ -15,7 +15,6 @@ namespace Kure {
 		~ImGuiLayer();
 		virtual void OnAttach() override;
 		virtual void OnDetach() override;
-		void OnImGuiRender() override;
 	
 		void Begin();
 		void End();

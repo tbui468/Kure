@@ -30,6 +30,9 @@
 //platform specific
 #include "Platform/OpenGL/OpenGLShader.h"
 
+//Debug
+#include "Kure/Debug/Instrumentor.h"
+
 
 //-------entry point-------------
 //currently in SandboxApp.cpp
