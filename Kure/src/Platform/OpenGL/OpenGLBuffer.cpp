@@ -5,13 +5,17 @@
 
 namespace Kure {
 
+	OpenGLVertexBuffer::OpenGLVertexBuffer(uint32_t size) {
+		KR_PROFILE_FUNCTION();
+		glCreateBuffers(1, &m_RendererID);
+		Bind();
+		glBufferData(GL_ARRAY_BUFFER, size, nullptr, GL_DYNAMIC_DRAW);
+	}
 
 	OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, uint32_t size) {
 		KR_PROFILE_FUNCTION();
 		glCreateBuffers(1, &m_RendererID);
 		Bind();
-
-		//load to gpu
 		glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW);
 	}
 
@@ -29,6 +33,10 @@ namespace Kure {
 		KR_PROFILE_FUNCTION();
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
+	void OpenGLVertexBuffer::SetData(const void* data, uint32_t size) const {
+		Bind();
+		glBufferSubData(GL_ARRAY_BUFFER, 0, size, data);
+	}
 
 
 
@@ -36,8 +44,6 @@ namespace Kure {
 		KR_PROFILE_FUNCTION();
 		glCreateBuffers(1, &m_RendererID);
 		Bind();
-
-		//load to gpu
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(unsigned int), indices, GL_STATIC_DRAW);
 	}
 	OpenGLIndexBuffer::~OpenGLIndexBuffer() {
