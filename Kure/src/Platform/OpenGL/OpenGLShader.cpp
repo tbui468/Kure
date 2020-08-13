@@ -189,6 +189,11 @@ namespace Kure {
 		glUseProgram(0);
 	}
 
+	void OpenGLShader::SetIntArray(int* value, uint32_t count, const std::string& name) {
+		KR_PROFILE_FUNCTION();
+		UploadUniformIntArray(value, count, name);
+	}
+
 
 	void OpenGLShader::SetInt(int value, const std::string& name) {
 		KR_PROFILE_FUNCTION();
@@ -213,6 +218,12 @@ namespace Kure {
 	void OpenGLShader::SetMat4(const glm::mat4& value, const std::string& name) {
 		KR_PROFILE_FUNCTION();
 		UploadUniformMat4(value, name);
+	}
+
+
+	void OpenGLShader::UploadUniformIntArray(int* value, uint32_t count, const std::string& name) const {
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		glUniform1iv(location, count, value);
 	}
 
 

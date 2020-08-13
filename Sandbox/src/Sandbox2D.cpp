@@ -10,6 +10,7 @@ Sandbox2D::Sandbox2D()
 void Sandbox2D::OnAttach() {
 	KR_PROFILE_FUNCTION();
 	m_Texture = Kure::Texture2D::Create("assets/textures/texture.png");
+	m_SquaresTexture = Kure::Texture2D::Create("assets/textures/squaresTexture.png");
 }
 void Sandbox2D::OnDetach() {
 	KR_PROFILE_FUNCTION();
@@ -38,7 +39,9 @@ void Sandbox2D::OnUpdate(Kure::TimeStep ts) {
 		Kure::Renderer2D::DrawQuad({ -0.7f, -0.1f }, { 2.0f, 0.8f }, { 0.5f, 0.2f, 0.8f, 1.0f });
 		Kure::Renderer2D::DrawQuad({ 0.7f, 0.1f }, { 1.0f, 1.0f }, { 0.5f, 0.8f, 0.3f, 1.0f });
 //		Kure::Renderer2D::DrawRotatedQuad({ 0.5f, -0.5f, -.1f }, 0.1f, { 2.0f, 2.0f }, m_Texture, 2.0f, glm::vec4(1.0f, 0.3f, 0.3f, 1.0f));
-//		Kure::Renderer2D::DrawQuad({ -0.5f, 0.5f, -.1f }, { 2.0f, 2.0f }, m_Texture, 2.0f, glm::vec4(0.3f, 1.0f, 0.3f, 1.0f));
+		Kure::Renderer2D::DrawQuad({ -0.5f, 0.5f, -.1f }, { 1.0f, 1.0f }, m_Texture, 12.0f, glm::vec4(0.3f, 1.0f, 0.3f, 1.0f));
+		Kure::Renderer2D::DrawQuad({ 0.5f, 0.5f, -.1f }, { 1.0f, 1.0f }, m_Texture, 1.0f, glm::vec4(0.3f, 1.0f, 0.3f, 1.0f));
+		Kure::Renderer2D::DrawQuad({ -0.5f, -1.0f, -.1f }, { 1.0f, 1.0f }, m_SquaresTexture, 2.0f, glm::vec4(0.3f, 1.0f, 0.3f, 1.0f));
 	}
 	{
 		KR_PROFILE_SCOPE("End scene");
