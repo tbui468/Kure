@@ -39,7 +39,13 @@ namespace Kure {
 			}
 		}
 
-		m_Camera.SetView(m_CameraTranslation, m_CameraRotation);
+		//skips rotation transformation
+		if (!m_Rotation) {
+			m_Camera.SetViewOnTranslation(m_CameraTranslation);
+		}
+		else {
+			m_Camera.SetView(m_CameraTranslation, m_CameraRotation);
+		}
 
 	}
 

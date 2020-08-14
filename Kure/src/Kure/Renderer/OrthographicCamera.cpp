@@ -22,6 +22,11 @@ namespace Kure {
 		CalculateViewProjectionMatrix();
 	}
 
+	void OrthographicCamera::SetViewOnTranslation(glm::vec3 translation) {
+		m_ViewMatrix = glm::inverse(glm::translate(glm::mat4(1.0f), translation));
+		CalculateViewProjectionMatrix();
+	}
+
 	void OrthographicCamera::CalculateViewProjectionMatrix() {
 		m_ViewProjectionMatrix = m_ProjectionMatrix * m_ViewMatrix;
 	}

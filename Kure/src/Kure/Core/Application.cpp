@@ -30,7 +30,7 @@ namespace Kure {
 		m_Window = Scope<Window>(Window::Create());
 		m_Window->SetEventCallback(KR_BIND_EVENT_FN(Application::OnEvent));
 
-		m_Window->SetVSync(true);
+		m_Window->SetVSync(false);
 
 		Renderer::Init();
 

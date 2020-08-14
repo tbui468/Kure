@@ -12,6 +12,7 @@ namespace Kure {
 		inline virtual glm::mat4 GetViewProjectionMatrix() const override { return m_ViewProjectionMatrix; }
 		void SetProjection(float left, float right, float bottom, float top, float n, float f);
 		void SetView(glm::vec3 translation, glm::vec3 rotation);
+		void SetViewOnTranslation(glm::vec3 translation);
 		virtual void CalculateViewProjectionMatrix() override;
 	private:
 		glm::mat4 m_ViewProjectionMatrix; 

@@ -31,7 +31,18 @@ namespace Kure {
 								float texScale = 1.0f, const glm::vec4& tint = glm::vec4(1.0f));
 		static void DrawRotatedQuad(const glm::vec3& position, float angle, const glm::vec2& size, const Ref<Texture2D>& texture,
 								float texScale = 1.0f, const glm::vec4& tint = glm::vec4(1.0f));
+		struct Statistics {
+			uint32_t DrawCalls = 0;
+			uint32_t QuadCount = 0;
+		};
+
+		static Statistics GetStats();
+
+		static void ResetStats();
+
 	private:
+		static void StartAnotherBatch();
+		static void InitBatch();
 	};
 
 }
