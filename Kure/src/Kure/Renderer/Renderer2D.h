@@ -16,6 +16,8 @@ namespace Kure {
 
 		static void Flush();
 
+		static void DrawLine(const glm::vec2& start, const glm::vec2& end, const glm::vec4& color);
+
 		//draw non-rotated quads
 		static void DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color);
 		static void DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color);

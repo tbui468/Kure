@@ -10,6 +10,7 @@ Sandbox2D::Sandbox2D()
 void Sandbox2D::OnAttach() {
 	KR_PROFILE_FUNCTION();
 	m_Texture = Kure::Texture2D::Create("assets/textures/texture.png");
+	m_SpriteSheet = Kure::Texture2D::Create("assets/game/RPGpack_sheet_2X.png");
 	m_SquaresTexture = Kure::Texture2D::Create("assets/textures/squaresTexture.png");
 }
 void Sandbox2D::OnDetach() {
@@ -27,12 +28,14 @@ void Sandbox2D::OnUpdate(Kure::TimeStep ts) {
 		KR_PROFILE_SCOPE("Clear Buffer");
 		Kure::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 		Kure::RenderCommand::Clear();
+		Kure::Renderer2D::ResetStats();
 	}
 
+
+#if 0
 	{
 		KR_PROFILE_SCOPE("Begin scene setup");
 		Kure::Renderer2D::BeginScene(m_CameraController->GetCamera());
-		Kure::Renderer2D::ResetStats();
 	}
 	{
 		KR_PROFILE_SCOPE("Render 3 quads"); //negative z is further away from camera (0 is at camera)
@@ -57,7 +60,11 @@ void Sandbox2D::OnUpdate(Kure::TimeStep ts) {
 		KR_PROFILE_SCOPE("End scene");
 		Kure::Renderer2D::EndScene();
 	}
+#endif
 
+		Kure::Renderer2D::BeginScene(m_CameraController->GetCamera());
+		Kure::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 1.0f, 1.0f }, m_SpriteSheet, 1.0f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+		Kure::Renderer2D::EndScene();
 
 
 

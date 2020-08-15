@@ -18,6 +18,7 @@ private:
 	Kure::Ref<Kure::OrthographicCameraController> m_CameraController;
 	glm::vec4 m_Color = { 1.0f, 1.0f, 1.0f, 1.0f };
 	Kure::Ref<Kure::Texture2D> m_Texture;
+	Kure::Ref<Kure::Texture2D> m_SpriteSheet;
 	Kure::Ref<Kure::Texture2D> m_SquaresTexture;
 };
 
