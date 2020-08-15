@@ -169,6 +169,7 @@
     <ClInclude Include="src\Kure\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Kure\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Kure\Renderer\Shader.h" />
+    <ClInclude Include="src\Kure\Renderer\SubTexture2D.h" />
     <ClInclude Include="src\Kure\Renderer\Texture.h" />
     <ClInclude Include="src\Kure\Renderer\VertexArray.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
@@ -198,6 +199,7 @@
     <ClCompile Include="src\Kure\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Kure\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Kure\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Kure\Renderer\SubTexture2D.cpp" />
     <ClCompile Include="src\Kure\Renderer\Texture.cpp" />
     <ClCompile Include="src\Kure\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />

@@ -1,6 +1,7 @@
 #include "Sandbox2D.h"
 
 
+
 Sandbox2D::Sandbox2D()
 	: Layer("Sandbox2D"), m_CameraController(std::make_shared<Kure::OrthographicCameraController>(1280.0f / 720.0f, false)){
 	KR_PROFILE_FUNCTION();
@@ -12,7 +13,11 @@ void Sandbox2D::OnAttach() {
 	m_Texture = Kure::Texture2D::Create("assets/textures/texture.png");
 	m_SpriteSheet = Kure::Texture2D::Create("assets/game/RPGpack_sheet_2X.png");
 	m_SquaresTexture = Kure::Texture2D::Create("assets/textures/squaresTexture.png");
+
+	m_TreeSubTexture = Kure::SubTexture2D::CreateFromCoords(m_SpriteSheet, 2, 1, { 128.0f, 128.0f }, { 1.0f, 2.0f });
+	m_BarrelSubTexture = Kure::SubTexture2D::CreateFromCoords(m_SpriteSheet, 9, 0, { 128.0f, 128.0f });
 }
+
 void Sandbox2D::OnDetach() {
 	KR_PROFILE_FUNCTION();
 }
@@ -63,7 +68,13 @@ void Sandbox2D::OnUpdate(Kure::TimeStep ts) {
 #endif
 
 		Kure::Renderer2D::BeginScene(m_CameraController->GetCamera());
-		Kure::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 1.0f, 1.0f }, m_SpriteSheet, 1.0f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+//		Kure::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 1.0f, 1.0f }, m_SpriteSheet, 1.0f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+		Kure::Renderer2D::DrawQuad({ 1.0f, 0.0f, -0.1f }, { 1.0f, 2.0f }, m_TreeSubTexture, 1.0f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+		Kure::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 1.0f, 1.0f }, m_BarrelSubTexture, 1.0f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+
+
+		Kure::Renderer2D::DrawRotatedQuad({ 1.0f, 1.0f, -0.1f }, glm::radians(45.0f), { 1.0f, 2.0f }, m_TreeSubTexture, 1.0f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+		Kure::Renderer2D::DrawRotatedQuad({ 0.0f, 1.0f, -0.1f }, glm::radians(180.0f), { 1.0f, 1.0f }, m_BarrelSubTexture, 1.0f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 		Kure::Renderer2D::EndScene();
 
 

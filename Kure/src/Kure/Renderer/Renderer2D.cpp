@@ -229,21 +229,6 @@ namespace Kure {
 	}
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture, float texScale, const glm::vec4& tint) {
 
-		//testing drawing subimage on sprite sheet
-		float x = 2;
-		float y = 3;
-
-		float spriteWidth = 128;
-		float spriteHeight = 128;
-
-		float sheetWidth = texture->GetWidth();
-		float sheetHeight = texture->GetHeight();
-		glm::vec2 texCoord[4] = {
-			{x * spriteWidth / sheetWidth, y * spriteHeight / sheetHeight},
-			{(x + 1) * spriteWidth / sheetWidth, y * spriteHeight / sheetHeight},
-			{(x + 1) * spriteWidth / sheetWidth, (y + 1) * spriteHeight / sheetHeight},
-			{x * spriteWidth / sheetWidth, (y + 1) * spriteHeight / sheetHeight}
-		};
 
 
 		if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndicesPerDrawCall) {
@@ -276,28 +261,28 @@ namespace Kure {
 
 		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[0];
 		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = texCoord[0];
+		s_Data.QuadVertexBufferPtr->TexCoord = { 0.0f, 0.0f };
 		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
 		s_Data.QuadVertexBufferPtr->TexScale = texScale;
 		s_Data.QuadVertexBufferPtr++;
 
 		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[1];
 		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = texCoord[1];
+		s_Data.QuadVertexBufferPtr->TexCoord = { 1.0f, 0.0f };
 		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
 		s_Data.QuadVertexBufferPtr->TexScale = texScale;
 		s_Data.QuadVertexBufferPtr++;
 
 		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[2];
 		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = texCoord[2];
+		s_Data.QuadVertexBufferPtr->TexCoord = { 1.0f, 1.0f };
 		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
 		s_Data.QuadVertexBufferPtr->TexScale = texScale;
 		s_Data.QuadVertexBufferPtr++;
 
 		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[3];
 		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = texCoord[3];
+		s_Data.QuadVertexBufferPtr->TexCoord = { 0.0f, 1.0f };
 		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
 		s_Data.QuadVertexBufferPtr->TexScale = texScale;
 		s_Data.QuadVertexBufferPtr++;
@@ -318,6 +303,84 @@ namespace Kure {
 
 		s_Data.QuadVertexArray->Bind();
 		RenderCommand::DrawIndexed(*s_Data.QuadVertexArray);*/
+	}
+
+
+	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<SubTexture2D>& subTexture, float texScale, const glm::vec4& tint) {
+		DrawQuad({ position.x, position.y, 0.0f }, size, subTexture, texScale, tint);
+	}
+	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<SubTexture2D>& subTexture, float texScale, const glm::vec4& tint) {
+
+
+
+		if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndicesPerDrawCall) {
+			StartAnotherBatch();
+		}
+
+		glm::vec4 color(1.0f);
+
+		//check if texture is already loaded
+		float textureIndex = 0.0f;
+		const Ref<Texture2D> texture = subTexture->GetTexture();
+
+
+		for (uint32_t i = 1; i < s_Data.TextureSlotIndex; ++i) {
+			if (*s_Data.TextureSlots[i].get() == *texture.get()) {
+				textureIndex = (float)i;
+				break;
+			}
+		}
+
+
+		//if texture is not alreading in TextureSlots, add it inside
+		//increment TExtureSLotIndex
+		if (textureIndex == 0) {
+			textureIndex = (float)s_Data.TextureSlotIndex;
+			s_Data.TextureSlots[s_Data.TextureSlotIndex] = texture;
+			s_Data.TextureSlotIndex++;
+		}
+
+
+		glm::mat4 transformation = glm::translate(glm::mat4(1.0f), position) *
+			glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
+
+
+
+		const glm::vec2* texCoords = subTexture->GetTextureCoordinates();
+
+		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[0];
+		s_Data.QuadVertexBufferPtr->Color = color;
+		s_Data.QuadVertexBufferPtr->TexCoord = texCoords[0];
+		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
+		s_Data.QuadVertexBufferPtr->TexScale = texScale;
+		s_Data.QuadVertexBufferPtr++;
+
+		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[1];
+		s_Data.QuadVertexBufferPtr->Color = color;
+		s_Data.QuadVertexBufferPtr->TexCoord = texCoords[1];
+		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
+		s_Data.QuadVertexBufferPtr->TexScale = texScale;
+		s_Data.QuadVertexBufferPtr++;
+
+		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[2];
+		s_Data.QuadVertexBufferPtr->Color = color;
+		s_Data.QuadVertexBufferPtr->TexCoord = texCoords[2];
+		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
+		s_Data.QuadVertexBufferPtr->TexScale = texScale;
+		s_Data.QuadVertexBufferPtr++;
+
+		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[3];
+		s_Data.QuadVertexBufferPtr->Color = color;
+		s_Data.QuadVertexBufferPtr->TexCoord = texCoords[3];
+		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
+		s_Data.QuadVertexBufferPtr->TexScale = texScale;
+		s_Data.QuadVertexBufferPtr++;
+
+		s_Data.QuadIndexCount += 6;
+
+		s_Data.Stats.QuadCount++;
+
+
 	}
 
 
@@ -439,6 +502,80 @@ namespace Kure {
 
 		s_Data.Stats.QuadCount++;
 	}
+
+
+	void Renderer2D::DrawRotatedQuad(const glm::vec2& position, float angle, const glm::vec2& size, const Ref<SubTexture2D>& subTexture, float texScale, const glm::vec4& tint) {
+		DrawRotatedQuad({ position.x, position.y, 0.0f }, angle, size, subTexture, texScale);
+	}
+	void Renderer2D::DrawRotatedQuad(const glm::vec3& position, float angle, const glm::vec2& size, const Ref<SubTexture2D>& subTexture, float texScale, const glm::vec4& tint) {
+
+
+		if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndicesPerDrawCall) {
+			StartAnotherBatch();
+		}
+
+		glm::vec4 color(1.0f);
+
+		//check if texture is already loaded
+		float textureIndex = 0.0f;
+
+		const Ref<Texture2D> texture = subTexture->GetTexture();
+
+		for (uint32_t i = 1; i < s_Data.TextureSlotIndex; ++i) {
+			if (*s_Data.TextureSlots[i].get() == *texture.get()) {
+				textureIndex = (float)i;
+				break;
+			}
+		}
+
+		//if texture is not alreading in TextureSlots, add it inside
+		//increment TExtureSLotIndex
+		if (textureIndex == 0) {
+			textureIndex = (float)s_Data.TextureSlotIndex;
+			s_Data.TextureSlots[s_Data.TextureSlotIndex] = texture;
+			s_Data.TextureSlotIndex++;
+		}
+
+
+		glm::mat4 transformation = glm::translate(glm::mat4(1.0f), position) * glm::rotate(glm::mat4(1.0f), angle, { 0.0f, 0.0f, 1.0f }) *
+			glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
+
+		const glm::vec2* texCoords = subTexture->GetTextureCoordinates();
+
+		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[0];
+		s_Data.QuadVertexBufferPtr->Color = color;
+		s_Data.QuadVertexBufferPtr->TexCoord = texCoords[0];
+		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
+		s_Data.QuadVertexBufferPtr->TexScale = texScale;
+		s_Data.QuadVertexBufferPtr++;
+
+		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[1];
+		s_Data.QuadVertexBufferPtr->Color = color;
+		s_Data.QuadVertexBufferPtr->TexCoord = texCoords[1];
+		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
+		s_Data.QuadVertexBufferPtr->TexScale = texScale;
+		s_Data.QuadVertexBufferPtr++;
+
+		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[2];
+		s_Data.QuadVertexBufferPtr->Color = color;
+		s_Data.QuadVertexBufferPtr->TexCoord = texCoords[2];
+		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
+		s_Data.QuadVertexBufferPtr->TexScale = texScale;
+		s_Data.QuadVertexBufferPtr++;
+
+		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[3];
+		s_Data.QuadVertexBufferPtr->Color = color;
+		s_Data.QuadVertexBufferPtr->TexCoord = texCoords[3];
+		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
+		s_Data.QuadVertexBufferPtr->TexScale = texScale;
+		s_Data.QuadVertexBufferPtr++;
+
+		s_Data.QuadIndexCount += 6;
+
+		s_Data.Stats.QuadCount++;
+	}
+
+
 
 	Renderer2D::Statistics Renderer2D::GetStats() {
 		return s_Data.Stats;

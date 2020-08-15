@@ -126,6 +126,9 @@
     <ClInclude Include="src\Kure\Renderer\Shader.h">
       <Filter>src\Kure\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Kure\Renderer\SubTexture2D.h">
+      <Filter>src\Kure\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Kure\Renderer\Texture.h">
       <Filter>src\Kure\Renderer</Filter>
     </ClInclude>
@@ -207,6 +210,9 @@
       <Filter>src\Kure\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\Renderer\Shader.cpp">
+      <Filter>src\Kure\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Kure\Renderer\SubTexture2D.cpp">
       <Filter>src\Kure\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\Renderer\Texture.cpp">

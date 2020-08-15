@@ -20,5 +20,7 @@ private:
 	Kure::Ref<Kure::Texture2D> m_Texture;
 	Kure::Ref<Kure::Texture2D> m_SpriteSheet;
 	Kure::Ref<Kure::Texture2D> m_SquaresTexture;
+	Kure::Ref<Kure::SubTexture2D> m_TreeSubTexture;
+	Kure::Ref<Kure::SubTexture2D> m_BarrelSubTexture;
 };
 

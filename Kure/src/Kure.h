@@ -23,6 +23,7 @@
 #include "Kure/Renderer/Renderer2D.h"
 #include "Kure/Renderer/Camera.h"
 #include "Kure/Renderer/Texture.h"
+#include "Kure/Renderer/SubTexture2D.h"
 
 //ImGui
 #include "Kure/ImGui/ImGuiLayer.h"
