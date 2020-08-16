@@ -37,5 +37,5 @@ uniform float u_TexScale;
 uniform sampler2D u_Textures[32];
 
 void main() {
-	color = texture(u_Textures[int(v_TexSlot)], v_TexCoord * v_TexScale) * v_Color;
+	color = texture(u_Textures[int(v_TexSlot)], v_TexCoord * v_TexScale) * v_Color; //[] operator may not work with all gpu drivers, switch may be better
 }

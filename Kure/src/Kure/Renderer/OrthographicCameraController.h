@@ -17,7 +17,10 @@ namespace Kure {
 		void OnEvent(Event& event);
 		OrthographicCamera& GetCamera() { return m_Camera; }
 		const OrthographicCamera& GetCamera() const { return m_Camera; }
+		void SetZoom(float zoom) { m_ZoomLevel = zoom; CalculateView(); }
+		float GetZoom() const { return m_ZoomLevel; }
 	private:
+		void CalculateView();
 		bool OnMouseScrolled(MouseScrolledEvent& event);
 		bool OnWindowResized(WindowResizedEvent& event);
 	private:

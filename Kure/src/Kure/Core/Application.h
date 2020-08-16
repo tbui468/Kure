@@ -20,6 +20,7 @@ namespace Kure {
 		inline static Application& Get() { return *s_Instance; }
 		inline Window& GetWindow() { return *m_Window; }
 		void Run();
+		void Close();
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizedEvent& e);

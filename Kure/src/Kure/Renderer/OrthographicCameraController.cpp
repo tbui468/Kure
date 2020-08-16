@@ -55,16 +55,21 @@ namespace Kure {
 		dispatcher.Dispatch<MouseScrolledEvent>(KR_BIND_EVENT_FN(OrthographicCameraController::OnMouseScrolled));
 		dispatcher.Dispatch<WindowResizedEvent>(KR_BIND_EVENT_FN(OrthographicCameraController::OnWindowResized));
 	}
+
+	void OrthographicCameraController::CalculateView() {
+		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel, 0.0f, 1.0f);
+	}
+
 	bool OrthographicCameraController::OnMouseScrolled(MouseScrolledEvent& event) {
 		m_ZoomLevel -= event.GetYOffset() * 0.25f;
 		m_ZoomLevel = std::max(m_ZoomLevel, 0.25f);
 		m_CameraTranslationSpeed = m_ZoomLevel;
-		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel, 0.0f, 1.0f);
+		CalculateView();
 		return false;
 	}
 	bool OrthographicCameraController::OnWindowResized(WindowResizedEvent& event) {
 		m_AspectRatio = (float)event.GetWidth() / (float)event.GetHeight();
-		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel, 0.0f, 1.0f);
+		CalculateView();
 		return false;
 	}
 
