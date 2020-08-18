@@ -162,6 +162,7 @@
     <ClInclude Include="src\Kure\Renderer\Buffer.h" />
     <ClInclude Include="src\Kure\Renderer\Camera.h" />
     <ClInclude Include="src\Kure\Renderer\Context.h" />
+    <ClInclude Include="src\Kure\Renderer\FrameBuffer.h" />
     <ClInclude Include="src\Kure\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\Kure\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\Kure\Renderer\RenderCommand.h" />
@@ -174,6 +175,7 @@
     <ClInclude Include="src\Kure\Renderer\VertexArray.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFrameBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
@@ -192,6 +194,7 @@
     <ClCompile Include="src\Kure\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Kure\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Kure\Renderer\Camera.cpp" />
+    <ClCompile Include="src\Kure\Renderer\FrameBuffer.cpp" />
     <ClCompile Include="src\Kure\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Kure\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Kure\Renderer\RenderCommand.cpp" />
@@ -204,6 +207,7 @@
     <ClCompile Include="src\Kure\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFrameBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />

@@ -25,5 +25,6 @@ private:
 	Kure::Ref<Kure::SubTexture2D> m_DirtSubTexture;
 	Kure::Ref<Kure::SubTexture2D> m_WaterSubTexture;
 	std::unordered_map<char, Kure::Ref<Kure::SubTexture2D>> m_TextureMap;
+	Kure::Ref<Kure::FrameBuffer> m_FrameBuffer;
 };
 

@@ -105,6 +105,9 @@
     <ClInclude Include="src\Kure\Renderer\Context.h">
       <Filter>src\Kure\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Kure\Renderer\FrameBuffer.h">
+      <Filter>src\Kure\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Kure\Renderer\OrthographicCamera.h">
       <Filter>src\Kure\Renderer</Filter>
     </ClInclude>
@@ -139,6 +142,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFrameBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
@@ -191,6 +197,9 @@
     <ClCompile Include="src\Kure\Renderer\Camera.cpp">
       <Filter>src\Kure\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Kure\Renderer\FrameBuffer.cpp">
+      <Filter>src\Kure\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Kure\Renderer\OrthographicCamera.cpp">
       <Filter>src\Kure\Renderer</Filter>
     </ClCompile>
@@ -225,6 +234,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFrameBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">

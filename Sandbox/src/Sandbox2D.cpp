@@ -52,6 +52,11 @@ void Sandbox2D::OnAttach() {
 	m_TextureMap['G'] = m_GrassSubTexture;
 
 	m_CameraController->SetZoom(5.0f);
+
+	Kure::FrameBufferSpecification frameBufferSpec;
+	frameBufferSpec.Width = 1280;
+	frameBufferSpec.Height = 720;
+	m_FrameBuffer = Kure::FrameBuffer::Create(frameBufferSpec);
 }
 
 void Sandbox2D::OnDetach() {
@@ -63,6 +68,7 @@ void Sandbox2D::OnUpdate(Kure::TimeStep ts) {
 	{
 		KR_PROFILE_SCOPE("Camera Controller Onupdate()");
 		m_CameraController->OnUpdate(ts);
+		m_FrameBuffer->Bind();
 	}
 
 	{
@@ -102,7 +108,6 @@ void Sandbox2D::OnUpdate(Kure::TimeStep ts) {
 		Kure::Renderer2D::EndScene();
 	}
 #endif
-
 		Kure::Renderer2D::BeginScene(m_CameraController->GetCamera());
 //		Kure::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 1.0f, 1.0f }, m_SpriteSheet, 1.0f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 //		Kure::Renderer2D::DrawQuad({ 1.0f, 0.0f, -0.1f }, { 1.0f, 1.0f }, m_GrassSubTexture, 1.0f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
@@ -131,6 +136,7 @@ void Sandbox2D::OnUpdate(Kure::TimeStep ts) {
 //		Kure::Renderer2D::DrawRotatedQuad({ 1.0f, 1.0f, -0.1f }, glm::radians(45.0f), { 1.0f, 2.0f }, m_TreeSubTexture, 1.0f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 //		Kure::Renderer2D::DrawRotatedQuad({ 0.0f, 1.5f, -0.1f }, glm::radians(180.0f), { 1.0f, 1.0f }, m_BarrelSubTexture, 1.0f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 		Kure::Renderer2D::EndScene();
+		m_FrameBuffer->Unbind();
 
 
 
@@ -216,8 +222,9 @@ void Sandbox2D::OnImGuiRender() {
 
 		ImGui::ColorEdit4("Square color", glm::value_ptr(m_Color));
 
-		uint32_t texture = m_Texture->GetRendererID();
-		ImGui::Image((void*)texture, ImVec2{ 256, 256 }, ImVec2{ 0.0f, 1.0f }, ImVec2{ 1.0f, 0.0f });
+		//uint32_t texture = m_Texture->GetRendererID();
+		uint32_t texture = m_FrameBuffer->GetColorAttachmentRendererID();
+		ImGui::Image((void*)texture, ImVec2{ 1280, 720 }, ImVec2{ 0.0f, 1.0f }, ImVec2{ 1.0f, 0.0f });
 
 		ImGui::End();
 	}

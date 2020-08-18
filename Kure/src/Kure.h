@@ -24,6 +24,7 @@
 #include "Kure/Renderer/Camera.h"
 #include "Kure/Renderer/Texture.h"
 #include "Kure/Renderer/SubTexture2D.h"
+#include "Kure/Renderer/FrameBuffer.h"
 
 //ImGui
 #include "Kure/ImGui/ImGuiLayer.h"
