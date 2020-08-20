@@ -56,7 +56,7 @@ namespace Kure {
 		dispatcher.Dispatch<WindowResizedEvent>(KR_BIND_EVENT_FN(OrthographicCameraController::OnWindowResized));
 	}
 
-	void OrthographicCameraController::CalculateView() {
+	void OrthographicCameraController::CalculateProjection() {
 		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel, 0.0f, 1.0f);
 	}
 
@@ -64,12 +64,17 @@ namespace Kure {
 		m_ZoomLevel -= event.GetYOffset() * 0.25f;
 		m_ZoomLevel = std::max(m_ZoomLevel, 0.25f);
 		m_CameraTranslationSpeed = m_ZoomLevel;
-		CalculateView();
+		CalculateProjection();
 		return false;
 	}
+
+	void OrthographicCameraController::OnResize(uint32_t width, uint32_t height) {
+		m_AspectRatio = (float)width / (float)height;
+		CalculateProjection();
+	}
+
 	bool OrthographicCameraController::OnWindowResized(WindowResizedEvent& event) {
-		m_AspectRatio = (float)event.GetWidth() / (float)event.GetHeight();
-		CalculateView();
+		OnResize(event.GetWidth(), event.GetHeight());
 		return false;
 	}
 

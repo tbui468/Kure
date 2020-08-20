@@ -1,6 +1,6 @@
 workspace "Kure"
 	architecture "x64"
-	startproject "Sandbox"
+	startproject "Kure-Editor"
 
 	configurations
 	{
@@ -97,6 +97,59 @@ project "Kure"
 
 project "Sandbox"
 	location "Sandbox"
+	kind "ConsoleApp"
+	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files
+	{
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp",
+	}
+
+	includedirs
+	{
+		"Kure/vendor/spdlog/include",
+		"Kure/src",
+		"%{IncludeDir.glm}",
+		"Kure/vendor"
+	}
+
+	links
+	{
+		"Kure"
+	}
+
+	filter "system:windows"
+		systemversion "latest"
+
+
+
+	filter "configurations:Debug"
+		defines "KR_DEBUG"
+		runtime "Debug"
+		symbols "on"
+
+	filter "configurations:Release"
+		defines "KR_RELEASE"
+		runtime "Release"
+		optimize "on"
+
+	filter "configurations:Dist"
+		defines "KR_DIST"
+		runtime "Release"
+		optimize "on"
+
+
+
+
+
+project "Kure-Editor"
+	location "Kure-Editor"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"

@@ -11,7 +11,7 @@ namespace Kure {
 	class KURE_API Application
 	{
 	public:
-		Application();
+		Application(const std::string& name = "Kure App");
 		virtual ~Application();
 		void OnEvent(Event& e);
 		void PushLayer(Layer* layer);

@@ -19,8 +19,8 @@ namespace Kure {
 		EVENT_CLASS_TYPE(WindowResize)
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	private:
-		unsigned int m_Width;
-		unsigned int m_Height;
+		uint32_t m_Width;
+		uint32_t m_Height;
 	};
 
 	class KURE_API WindowCloseEvent : public Event {
