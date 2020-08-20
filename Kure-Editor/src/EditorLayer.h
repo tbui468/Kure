@@ -30,6 +30,7 @@ namespace Kure {
 		std::unordered_map<char, Ref<SubTexture2D>> m_TextureMap;
 		Ref<FrameBuffer> m_FrameBuffer;
 		glm::vec2 m_ViewportSize = { 0.0f, 0.0f };
+		bool m_ViewportFocused = false;
 	};
 
 

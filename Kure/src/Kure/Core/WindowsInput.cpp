@@ -1,14 +1,14 @@
 #include "krpch.h"
-#include "WindowsInput.h"
+#include "Kure/Core/Input.h"
 #include "Application.h"
 
 #include <GLFW/glfw3.h>
 
 namespace Kure {
 
-	Input* Input::s_Instance = new WindowsInput();
+	
 
-	bool WindowsInput::IsKeyPressedImpl(int keycode) const {
+	bool Input::IsKeyPressed(int keycode) {
 
 		GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 
@@ -18,7 +18,7 @@ namespace Kure {
 	}
 
 
-	bool WindowsInput::IsButtonPressedImpl(int button) const {
+	bool Input::IsMousePressed(int button) {
 
 		GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 
@@ -28,7 +28,7 @@ namespace Kure {
 	}
 
 
-	std::pair<float, float> WindowsInput::GetMousePositionImpl() const {
+	std::pair<float, float> Input::GetMousePosition() {
 		GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 
 		double x;
@@ -37,11 +37,13 @@ namespace Kure {
 
 		return std::make_pair<float, float>(float(x), float(y));
 	}
-	float WindowsInput::GetMouseXImpl() const {
-		return GetMousePositionImpl().first;
+
+	float Input::GetMouseX() {
+		return GetMousePosition().first;
 	}
-	float WindowsInput::GetMouseYImpl() const {
-		return GetMousePositionImpl().second;
+
+	float Input::GetMouseY() {
+		return GetMousePosition().second;
 	}
 
 

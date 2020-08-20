@@ -152,7 +152,6 @@
     <ClInclude Include="src\Kure\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\Kure\Core\TimeStep.h" />
     <ClInclude Include="src\Kure\Core\Window.h" />
-    <ClInclude Include="src\Kure\Core\WindowsInput.h" />
     <ClInclude Include="src\Kure\Debug\Instrumentor.h" />
     <ClInclude Include="src\Kure\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Kure\Events\Event.h" />

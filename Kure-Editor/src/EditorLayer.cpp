@@ -70,7 +70,9 @@ namespace Kure {
 
 		{
 			KR_PROFILE_SCOPE("Camera Controller Onupdate()");
-			m_CameraController->OnUpdate(ts);
+			if (m_ViewportFocused) {
+				m_CameraController->OnUpdate(ts);
+			}
 			m_FrameBuffer->Bind();
 		}
 
@@ -227,6 +229,8 @@ namespace Kure {
 
 			ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
 			ImGui::Begin("Viewport");
+
+			m_ViewportFocused = ImGui::IsWindowFocused();
 		
 			//change frambuffersize, and projection matrix on resize
 			ImVec2 viewportSize = ImGui::GetContentRegionAvail();
@@ -235,6 +239,8 @@ namespace Kure {
 				m_FrameBuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 				m_CameraController->OnResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 			}
+
+
 
 			//draw texture to Imgui panel
 			uint32_t texture = m_FrameBuffer->GetColorAttachmentRendererID();
@@ -251,7 +257,9 @@ namespace Kure {
 	}
 	void EditorLayer::OnEvent(Event& event) {
 		KR_PROFILE_FUNCTION();
-		m_CameraController->OnEvent(event);
+		if (m_ViewportFocused) {
+			m_CameraController->OnEvent(event);
+		}
 	}
 
 }
