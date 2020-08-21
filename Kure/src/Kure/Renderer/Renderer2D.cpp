@@ -26,6 +26,7 @@ namespace Kure {
 		static const uint32_t MaxIndicesPerDrawCall = MaxQuadsPerDrawCall * 6;
 		static const uint32_t MaxTextureSlots = 32; //TODO: RenderCapabilities
 		static const glm::vec4 QuadVertexPos[];
+		static const glm::vec2 TexCoordPos[];
 
 		Ref<VertexArray> QuadVertexArray;
 		Ref<VertexBuffer> QuadVertexBuffer;
@@ -49,6 +50,9 @@ namespace Kure {
 	{ 0.5, -0.5, 0.0, 1.0f },
 	{ 0.5, 0.5, 0.0, 1.0f },
 	{ -0.5, 0.5, 0.0, 1.0f } };
+
+
+	const glm::vec2 Renderer2DData::TexCoordPos[] = { {0.0f, 0.0f}, {1.0f, 0.0f}, {1.0f, 1.0f}, {0.0f, 1.0f} };
 	
 
 
@@ -176,51 +180,20 @@ namespace Kure {
 		glm::mat4 transformation = glm::translate(glm::mat4(1.0f), position) *
 			glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
 
-		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[0];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 0.0f, 0.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TexScale = texScale;
-		s_Data.QuadVertexBufferPtr++;
+		for (int i = 0; i < 4; ++i) {
+				s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[i];
+				s_Data.QuadVertexBufferPtr->TexCoord = Renderer2DData::TexCoordPos[i];
+				s_Data.QuadVertexBufferPtr->Color = color;
+				s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
+				s_Data.QuadVertexBufferPtr->TexScale = texScale;
+				s_Data.QuadVertexBufferPtr++;
+		}
 
-		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[1];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 1.0f, 0.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TexScale = texScale;
-		s_Data.QuadVertexBufferPtr++;
-
-		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[2];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 1.0f, 1.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TexScale = texScale;
-		s_Data.QuadVertexBufferPtr++;
-
-		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[3];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 0.0f, 1.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TexScale = texScale;
-		s_Data.QuadVertexBufferPtr++;
 
 		s_Data.QuadIndexCount += 6;
 
 		s_Data.Stats.QuadCount++;
 
-		/*
-		s_Data.CombinedShader->SetFloat4(color, "u_Color");  //upload color
-		s_Data.CombinedShader->SetFloat(1.0f, "u_TexScale");
-
-		s_Data.WhiteTexture->Bind(0); //bind a solid white texture
-
-		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
-
-
-		s_Data.CombinedShader->SetMat4(transform, "u_Transform");
-
-		s_Data.QuadVertexArray->Bind();
-		RenderCommand::DrawIndexed(*s_Data.QuadVertexArray);*/
 	}
 
 
@@ -259,50 +232,21 @@ namespace Kure {
 		glm::mat4 transformation = glm::translate(glm::mat4(1.0f), position) *
 			glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
 
-		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[0];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 0.0f, 0.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TexScale = texScale;
-		s_Data.QuadVertexBufferPtr++;
 
-		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[1];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 1.0f, 0.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TexScale = texScale;
-		s_Data.QuadVertexBufferPtr++;
+		for (int i = 0; i < 4; ++i) {
+				s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[i];
+				s_Data.QuadVertexBufferPtr->TexCoord = Renderer2DData::TexCoordPos[i];
+				s_Data.QuadVertexBufferPtr->Color = color;
+				s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
+				s_Data.QuadVertexBufferPtr->TexScale = texScale;
+				s_Data.QuadVertexBufferPtr++;
+		}
 
-		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[2];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 1.0f, 1.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TexScale = texScale;
-		s_Data.QuadVertexBufferPtr++;
-
-		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[3];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 0.0f, 1.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TexScale = texScale;
-		s_Data.QuadVertexBufferPtr++;
 
 		s_Data.QuadIndexCount += 6;
 
 		s_Data.Stats.QuadCount++;
 
-		/*
-		s_Data.CombinedShader->SetFloat4(tint, "u_Color");
-		s_Data.CombinedShader->SetFloat(texScale, "u_TexScale");
-
-		texture->Bind(0);
-
-		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
-
-		s_Data.CombinedShader->SetMat4(transform, "u_Transform");
-
-		s_Data.QuadVertexArray->Bind();
-		RenderCommand::DrawIndexed(*s_Data.QuadVertexArray);*/
 	}
 
 
@@ -348,33 +292,16 @@ namespace Kure {
 
 		const glm::vec2* texCoords = subTexture->GetTextureCoordinates();
 
-		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[0];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = texCoords[0];
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TexScale = texScale;
-		s_Data.QuadVertexBufferPtr++;
+		for (int i = 0; i < 4; ++i) {
+			s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[i];
+			s_Data.QuadVertexBufferPtr->Color = color;
+			s_Data.QuadVertexBufferPtr->TexCoord = texCoords[i];
+			s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
+			s_Data.QuadVertexBufferPtr->TexScale = texScale;
+			s_Data.QuadVertexBufferPtr++;
+		}
 
-		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[1];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = texCoords[1];
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TexScale = texScale;
-		s_Data.QuadVertexBufferPtr++;
 
-		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[2];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = texCoords[2];
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TexScale = texScale;
-		s_Data.QuadVertexBufferPtr++;
-
-		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[3];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = texCoords[3];
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TexScale = texScale;
-		s_Data.QuadVertexBufferPtr++;
 
 		s_Data.QuadIndexCount += 6;
 
@@ -402,33 +329,15 @@ namespace Kure {
 		float textureIndex = 0.0f; //white
 		float texScale = 1.0f;
 
-		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[0];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 0.0f, 0.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TexScale = texScale;
-		s_Data.QuadVertexBufferPtr++;
+		for (int i = 0; i < 4; ++i) {
+			s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[i];
+			s_Data.QuadVertexBufferPtr->Color = color;
+			s_Data.QuadVertexBufferPtr->TexCoord = Renderer2DData::TexCoordPos[i];
+			s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
+			s_Data.QuadVertexBufferPtr->TexScale = texScale;
+			s_Data.QuadVertexBufferPtr++;
+		}
 
-		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[1];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 1.0f, 0.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TexScale = texScale;
-		s_Data.QuadVertexBufferPtr++;
-
-		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[2];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 1.0f, 1.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TexScale = texScale;
-		s_Data.QuadVertexBufferPtr++;
-
-		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[3];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 0.0f, 1.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TexScale = texScale;
-		s_Data.QuadVertexBufferPtr++;
 
 		s_Data.QuadIndexCount += 6;
 
@@ -470,33 +379,16 @@ namespace Kure {
 		glm::mat4 transformation = glm::translate(glm::mat4(1.0f), position) * glm::rotate(glm::mat4(1.0f), angle, { 0.0f, 0.0f, 1.0f }) *
 			glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
 
-		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[0];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 0.0f, 0.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TexScale = texScale;
-		s_Data.QuadVertexBufferPtr++;
+		for (int i = 0; i < 4; ++i) {
+			s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[i];
+			s_Data.QuadVertexBufferPtr->Color = color;
+			s_Data.QuadVertexBufferPtr->TexCoord = Renderer2DData::TexCoordPos[i];
+			s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
+			s_Data.QuadVertexBufferPtr->TexScale = texScale;
+			s_Data.QuadVertexBufferPtr++;
+		}
 
-		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[1];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 1.0f, 0.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TexScale = texScale;
-		s_Data.QuadVertexBufferPtr++;
 
-		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[2];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 1.0f, 1.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TexScale = texScale;
-		s_Data.QuadVertexBufferPtr++;
-
-		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[3];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 0.0f, 1.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TexScale = texScale;
-		s_Data.QuadVertexBufferPtr++;
 
 		s_Data.QuadIndexCount += 6;
 
@@ -542,33 +434,14 @@ namespace Kure {
 
 		const glm::vec2* texCoords = subTexture->GetTextureCoordinates();
 
-		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[0];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = texCoords[0];
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TexScale = texScale;
-		s_Data.QuadVertexBufferPtr++;
-
-		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[1];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = texCoords[1];
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TexScale = texScale;
-		s_Data.QuadVertexBufferPtr++;
-
-		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[2];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = texCoords[2];
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TexScale = texScale;
-		s_Data.QuadVertexBufferPtr++;
-
-		s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[3];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = texCoords[3];
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TexScale = texScale;
-		s_Data.QuadVertexBufferPtr++;
+		for (int i = 0; i < 4; ++i) {
+			s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[i];
+			s_Data.QuadVertexBufferPtr->Color = color;
+			s_Data.QuadVertexBufferPtr->TexCoord = texCoords[i];
+			s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
+			s_Data.QuadVertexBufferPtr->TexScale = texScale;
+			s_Data.QuadVertexBufferPtr++;
+		}
 
 		s_Data.QuadIndexCount += 6;
 

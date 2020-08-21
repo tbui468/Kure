@@ -138,8 +138,10 @@ namespace Kure {
 
 
 
-		//		Renderer2D::DrawRotatedQuad({ 1.0f, 1.0f, -0.1f }, glm::radians(45.0f), { 1.0f, 2.0f }, m_TreeSubTexture, 1.0f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
-		//		Renderer2D::DrawRotatedQuad({ 0.0f, 1.5f, -0.1f }, glm::radians(180.0f), { 1.0f, 1.0f }, m_BarrelSubTexture, 1.0f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+		Renderer2D::DrawQuad({ 2.0f, 2.0f, -0.0f }, { 1.0f, 1.0f }, m_BarrelSubTexture, 1.0f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+		Renderer2D::DrawRotatedQuad({ 1.0f, 1.0f, -0.0f }, glm::radians(45.0f), { 1.0f, 2.0f }, m_BarrelSubTexture, 1.0f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+		Renderer2D::DrawRotatedQuad({ 0.0f, 1.5f, -0.0f }, glm::radians(180.0f), { 1.0f, 1.0f }, m_BarrelSubTexture, 1.0f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+
 		Renderer2D::EndScene();
 		m_FrameBuffer->Unbind();
 
