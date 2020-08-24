@@ -19,6 +19,7 @@ IncludeDir["glad"] = "Kure/vendor/glad/include"
 IncludeDir["ImGui"] = "Kure/vendor/ImGui"
 IncludeDir["glm"] = "Kure/vendor/glm"
 IncludeDir["stb"] = "Kure/vendor/stb"
+IncludeDir["entt"] = "Kure/vendor/entt/include"
 
 --this includes the premake5 file in that directory
 --essentially copy and pasted into this premake5 file
@@ -56,7 +57,8 @@ project "Kure"
 		"%{IncludeDir.glad}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb}"
+		"%{IncludeDir.stb}",
+		"%{IncludeDir.entt}"
 	}
 
 	--these are projects we link
@@ -115,8 +117,9 @@ project "Sandbox"
 	{
 		"Kure/vendor/spdlog/include",
 		"Kure/src",
+		"Kure/vendor",
 		"%{IncludeDir.glm}",
-		"Kure/vendor"
+		"%{IncludeDir.entt}"
 	}
 
 	links
@@ -168,8 +171,9 @@ project "Kure-Editor"
 	{
 		"Kure/vendor/spdlog/include",
 		"Kure/src",
+		"Kure/vendor",
 		"%{IncludeDir.glm}",
-		"Kure/vendor"
+		"%{IncludeDir.entt}"
 	}
 
 	links

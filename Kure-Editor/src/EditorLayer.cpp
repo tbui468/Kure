@@ -60,6 +60,11 @@ namespace Kure {
 		frameBufferSpec.Width = 1280;
 		frameBufferSpec.Height = 720;
 		m_FrameBuffer = FrameBuffer::Create(frameBufferSpec);
+
+		m_ActiveScene = CreateRef<Scene>();
+		m_Square = m_ActiveScene->CreateEntity();
+		m_ActiveScene->Reg().emplace<TransformComponent>(m_Square);
+		m_ActiveScene->Reg().emplace<SpriteRendererComponent>(m_Square, glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
 	}
 
 	void EditorLayer::OnDetach() {
@@ -67,6 +72,7 @@ namespace Kure {
 	}
 	void EditorLayer::OnUpdate(TimeStep ts) {
 		KR_PROFILE_FUNCTION();
+
 
 		{
 			KR_PROFILE_SCOPE("Camera Controller Onupdate()");
@@ -113,10 +119,11 @@ namespace Kure {
 			Renderer2D::EndScene();
 		}
 #endif
+		
+
 		Renderer2D::BeginScene(m_CameraController->GetCamera());
-		//		Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 1.0f, 1.0f }, m_SpriteSheet, 1.0f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
-		//		Renderer2D::DrawQuad({ 1.0f, 0.0f, -0.1f }, { 1.0f, 1.0f }, m_GrassSubTexture, 1.0f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
-		//		Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 1.0f, 1.0f }, m_DirtSubTexture, 1.0f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+
+		/*
 
 		for (int32_t row = 0; row < mapWidth; ++row) {
 			for (int32_t col = 0; col < mapHeight; ++col) {
@@ -141,6 +148,10 @@ namespace Kure {
 		Renderer2D::DrawQuad({ 2.0f, 2.0f, -0.0f }, { 1.0f, 1.0f }, m_BarrelSubTexture, 1.0f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 		Renderer2D::DrawRotatedQuad({ 1.0f, 1.0f, -0.0f }, glm::radians(45.0f), { 1.0f, 2.0f }, m_BarrelSubTexture, 1.0f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 		Renderer2D::DrawRotatedQuad({ 0.0f, 1.5f, -0.0f }, glm::radians(180.0f), { 1.0f, 1.0f }, m_BarrelSubTexture, 1.0f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+
+		*/
+
+		m_ActiveScene->OnUpdate(ts);
 
 		Renderer2D::EndScene();
 		m_FrameBuffer->Unbind();
@@ -218,6 +229,8 @@ namespace Kure {
 		}
 
 
+		glm::vec4& color = m_ActiveScene->Reg().get<SpriteRendererComponent>(m_Square).Color;
+
 		//Panels inside dockspace
 		{
 			ImGui::Begin("Color Picker");
@@ -225,7 +238,7 @@ namespace Kure {
 			ImGui::Text("Rendering Stats:");
 			ImGui::Text("Draw Calls: %d", stats.DrawCalls);
 			ImGui::Text("Quad Count: %d", stats.QuadCount);
-			ImGui::ColorEdit4("Square color", glm::value_ptr(m_Color));
+			ImGui::ColorEdit4("Square color", glm::value_ptr(color));
 			ImGui::End();
 
 

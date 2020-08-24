@@ -311,20 +311,11 @@ namespace Kure {
 	}
 
 
-	//rotated quads
-	void Renderer2D::DrawRotatedQuad(const glm::vec2& position, float angle, const glm::vec2& size, const glm::vec4& color) {
-		DrawRotatedQuad({ position.x, position.y, 0.0f }, angle, size, color);
-	}
-	void Renderer2D::DrawRotatedQuad(const glm::vec3& position, float angle, const glm::vec2& size, const glm::vec4& color) {
-
-
+	//draw quads with transformation matrix
+	void Renderer2D::DrawQuad(const glm::mat4& transformation, const glm::vec4& color) {
 		if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndicesPerDrawCall) {
 			StartAnotherBatch();
 		}
-
-		glm::mat4 transformation = glm::translate(glm::mat4(1.0f), position) * glm::rotate(glm::mat4(1.0f), angle, { 0.0f, 0.0f, 1.0f }) *
-			glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
-
 
 		float textureIndex = 0.0f; //white
 		float texScale = 1.0f;
@@ -345,12 +336,7 @@ namespace Kure {
 	}
 
 
-	void Renderer2D::DrawRotatedQuad(const glm::vec2& position, float angle, const glm::vec2& size, const Ref<Texture2D>& texture, float texScale, const glm::vec4& tint) {
-		DrawRotatedQuad({ position.x, position.y, 0.0f }, angle, size, texture, texScale);
-	}
-	void Renderer2D::DrawRotatedQuad(const glm::vec3& position, float angle, const glm::vec2& size, const Ref<Texture2D>& texture, float texScale, const glm::vec4& tint) {
-
-
+	void Renderer2D::DrawQuad(const glm::mat4& transformation, const Ref<Texture2D>& texture, float texScale, const glm::vec4& tint) {
 		if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndicesPerDrawCall) {
 			StartAnotherBatch();
 		}
@@ -375,10 +361,6 @@ namespace Kure {
 			s_Data.TextureSlotIndex++;
 		}
 
-
-		glm::mat4 transformation = glm::translate(glm::mat4(1.0f), position) * glm::rotate(glm::mat4(1.0f), angle, { 0.0f, 0.0f, 1.0f }) *
-			glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
-
 		for (int i = 0; i < 4; ++i) {
 			s_Data.QuadVertexBufferPtr->Position = transformation * Renderer2DData::QuadVertexPos[i];
 			s_Data.QuadVertexBufferPtr->Color = color;
@@ -396,12 +378,7 @@ namespace Kure {
 	}
 
 
-	void Renderer2D::DrawRotatedQuad(const glm::vec2& position, float angle, const glm::vec2& size, const Ref<SubTexture2D>& subTexture, float texScale, const glm::vec4& tint) {
-		DrawRotatedQuad({ position.x, position.y, 0.0f }, angle, size, subTexture, texScale);
-	}
-	void Renderer2D::DrawRotatedQuad(const glm::vec3& position, float angle, const glm::vec2& size, const Ref<SubTexture2D>& subTexture, float texScale, const glm::vec4& tint) {
-
-
+	void Renderer2D::DrawQuad(const glm::mat4& transformation, const Ref<SubTexture2D>& subTexture, float texScale, const glm::vec4& tint) {
 		if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndicesPerDrawCall) {
 			StartAnotherBatch();
 		}
@@ -429,8 +406,6 @@ namespace Kure {
 		}
 
 
-		glm::mat4 transformation = glm::translate(glm::mat4(1.0f), position) * glm::rotate(glm::mat4(1.0f), angle, { 0.0f, 0.0f, 1.0f }) *
-			glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
 
 		const glm::vec2* texCoords = subTexture->GetTextureCoordinates();
 
@@ -446,6 +421,41 @@ namespace Kure {
 		s_Data.QuadIndexCount += 6;
 
 		s_Data.Stats.QuadCount++;
+	}
+
+
+	//rotated quads
+	void Renderer2D::DrawRotatedQuad(const glm::vec2& position, float angle, const glm::vec2& size, const glm::vec4& color) {
+		DrawRotatedQuad({ position.x, position.y, 0.0f }, angle, size, color);
+	}
+	void Renderer2D::DrawRotatedQuad(const glm::vec3& position, float angle, const glm::vec2& size, const glm::vec4& color) {
+		glm::mat4 transformation = glm::translate(glm::mat4(1.0f), position) * glm::rotate(glm::mat4(1.0f), angle, { 0.0f, 0.0f, 1.0f }) *
+			glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
+
+		DrawQuad(transformation, color);
+	}
+
+
+	void Renderer2D::DrawRotatedQuad(const glm::vec2& position, float angle, const glm::vec2& size, const Ref<Texture2D>& texture, float texScale, const glm::vec4& tint) {
+		DrawRotatedQuad({ position.x, position.y, 0.0f }, angle, size, texture, texScale);
+	}
+
+	void Renderer2D::DrawRotatedQuad(const glm::vec3& position, float angle, const glm::vec2& size, const Ref<Texture2D>& texture, float texScale, const glm::vec4& tint) {
+		glm::mat4 transformation = glm::translate(glm::mat4(1.0f), position) * glm::rotate(glm::mat4(1.0f), angle, { 0.0f, 0.0f, 1.0f }) *
+			glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
+
+		DrawQuad(transformation, texture, texScale, tint);
+	}
+
+
+	void Renderer2D::DrawRotatedQuad(const glm::vec2& position, float angle, const glm::vec2& size, const Ref<SubTexture2D>& subTexture, float texScale, const glm::vec4& tint) {
+		DrawRotatedQuad({ position.x, position.y, 0.0f }, angle, size, subTexture, texScale);
+	}
+	void Renderer2D::DrawRotatedQuad(const glm::vec3& position, float angle, const glm::vec2& size, const Ref<SubTexture2D>& subTexture, float texScale, const glm::vec4& tint) {
+		glm::mat4 transformation = glm::translate(glm::mat4(1.0f), position) * glm::rotate(glm::mat4(1.0f), angle, { 0.0f, 0.0f, 1.0f }) *
+			glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
+
+		DrawQuad(transformation, subTexture, texScale, tint);
 	}
 
 

@@ -14,6 +14,10 @@
 #include "Kure/Core/KeyCodes.h"
 #include "Kure/Core/MouseButtonCodes.h"
 
+//editor and scene
+#include "Kure/Scene/Scene.h"
+#include "Kure/Scene/Components.h"
+
 //rendering
 #include "Kure/Renderer/Buffer.h"
 #include "Kure/Renderer/VertexArray.h"
