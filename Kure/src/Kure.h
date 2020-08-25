@@ -17,6 +17,7 @@
 //editor and scene
 #include "Kure/Scene/Scene.h"
 #include "Kure/Scene/Components.h"
+#include "Kure/Scene/Entity.h"
 
 //rendering
 #include "Kure/Renderer/Buffer.h"

@@ -55,8 +55,13 @@ namespace Kure {
 		}*/
 	}
 
-	Scene::~Scene() {
 
+	Entity Scene::CreateEntity(const std::string& name) {
+		Entity entity(m_Registry.create(), this);
+		entity.AddComponent<TransformComponent>(glm::mat4(1.0f));
+		TagComponent& tag = entity.AddComponent<TagComponent>();
+		tag.Tag = name.empty() ? "Entity" : name;
+		return entity;
 	}
 
 
@@ -67,11 +72,6 @@ namespace Kure {
 
 			Renderer2D::DrawQuad(transform, sprite.Color);
 		}
-	}
-
-
-	entt::entity Scene::CreateEntity() {
-		return m_Registry.create();
 	}
 
 

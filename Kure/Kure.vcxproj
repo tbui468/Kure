@@ -173,6 +173,7 @@
     <ClInclude Include="src\Kure\Renderer\Texture.h" />
     <ClInclude Include="src\Kure\Renderer\VertexArray.h" />
     <ClInclude Include="src\Kure\Scene\Components.h" />
+    <ClInclude Include="src\Kure\Scene\Entity.h" />
     <ClInclude Include="src\Kure\Scene\Scene.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
@@ -206,6 +207,7 @@
     <ClCompile Include="src\Kure\Renderer\SubTexture2D.cpp" />
     <ClCompile Include="src\Kure\Renderer\Texture.cpp" />
     <ClCompile Include="src\Kure\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\Kure\Scene\Entity.cpp" />
     <ClCompile Include="src\Kure\Scene\Scene.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
@@ -234,4 +236,4 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
-</Project>
+</Project> 

@@ -61,10 +61,10 @@ namespace Kure {
 		frameBufferSpec.Height = 720;
 		m_FrameBuffer = FrameBuffer::Create(frameBufferSpec);
 
+		//entity component system
 		m_ActiveScene = CreateRef<Scene>();
-		m_Square = m_ActiveScene->CreateEntity();
-		m_ActiveScene->Reg().emplace<TransformComponent>(m_Square);
-		m_ActiveScene->Reg().emplace<SpriteRendererComponent>(m_Square, glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
+		m_Square = m_ActiveScene->CreateEntity("Square");
+		m_Square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 1.0f, 1.0f });
 	}
 
 	void EditorLayer::OnDetach() {
@@ -90,36 +90,6 @@ namespace Kure {
 		}
 
 
-#if 0
-		{
-			KR_PROFILE_SCOPE("Begin scene setup");
-			Renderer2D::BeginScene(m_CameraController->GetCamera());
-		}
-		{
-			KR_PROFILE_SCOPE("Render 3 quads"); //negative z is further away from camera (0 is at camera)
-			Renderer2D::DrawRotatedQuad({ 0.0f, -0.5f , -0.8f }, glm::radians(45.0f), { 1.0f, 1.0f }, m_Color);
-			Renderer2D::DrawRotatedQuad({ 0.0f, 0.0f , -0.5f }, glm::radians(60.0f), { 1.0f, 1.0f }, glm::vec4(1.0f, 0.0f, 1.0f, 1.0f));
-			Renderer2D::DrawQuad({ -0.7f, -0.1f }, { 2.0f, 0.8f }, { 0.5f, 0.2f, 0.8f, 1.0f });
-			Renderer2D::DrawRotatedQuad({ 0.5f, -0.5f, -0.1f }, glm::radians(180.0f), { 1.0f, 1.0f }, m_Texture, 2.0f, glm::vec4(1.0f, 0.3f, 0.3f, 1.0f));
-			Renderer2D::DrawQuad({ 0.0f, 0.0f, -.9f }, { 10.0f, 10.0f }, m_Texture, 1.0f, glm::vec4(0.3f, 1.0f, 0.3f, 1.0f));
-			/*
-			Renderer2D::DrawQuad({ 0.7f, 0.1f }, { 1.0f, 1.0f }, { 0.5f, 0.8f, 0.3f, 1.0f });
-			Renderer2D::DrawQuad({ -0.5f, 0.5f, -.1f }, { 1.0f, 1.0f }, m_Texture, 12.0f, glm::vec4(0.3f, 1.0f, 0.3f, 1.0f));
-			Renderer2D::DrawQuad({ -0.5f, -1.0f, -.1f }, { 1.0f, 1.0f }, m_SquaresTexture, 2.0f, glm::vec4(0.3f, 1.0f, 0.3f, 1.0f));*/
-
-
-			for (int i = -50; i < 50; ++i) {
-				for (int j = -50; j < 50; ++j) {
-					Renderer2D::DrawQuad({ (float)i, (float)j }, { 0.9f, 0.9f }, { ((float)i + 50.0f) / 100.0f, 0.2f, ((float)j + 50.0f) / 100.0f, 0.5f });
-				}
-			}
-		}
-		{
-			KR_PROFILE_SCOPE("End scene");
-			Renderer2D::EndScene();
-		}
-#endif
-		
 
 		Renderer2D::BeginScene(m_CameraController->GetCamera());
 
@@ -229,7 +199,6 @@ namespace Kure {
 		}
 
 
-		glm::vec4& color = m_ActiveScene->Reg().get<SpriteRendererComponent>(m_Square).Color;
 
 		//Panels inside dockspace
 		{
@@ -238,7 +207,12 @@ namespace Kure {
 			ImGui::Text("Rendering Stats:");
 			ImGui::Text("Draw Calls: %d", stats.DrawCalls);
 			ImGui::Text("Quad Count: %d", stats.QuadCount);
-			ImGui::ColorEdit4("Square color", glm::value_ptr(color));
+
+			if (m_Square) {
+				glm::vec4& color = m_Square.GetComponent<SpriteRendererComponent>().Color; //get color for registry
+				ImGui::ColorEdit4("Square color", glm::value_ptr(color));
+			}
+
 			ImGui::End();
 
 
@@ -246,10 +220,10 @@ namespace Kure {
 			ImGui::Begin("Viewport");
 
 			m_ViewportFocused = ImGui::IsWindowFocused();
-		
+
 			//change frambuffersize, and projection matrix on resize
 			ImVec2 viewportSize = ImGui::GetContentRegionAvail();
-			if (m_ViewportSize != *(glm::vec2*) &viewportSize) { //this is dangerous!!!
+			if (m_ViewportSize != *(glm::vec2*) & viewportSize) { //this is dangerous!!!
 				m_ViewportSize = { viewportSize.x, viewportSize.y };
 				m_FrameBuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 				m_CameraController->OnResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);

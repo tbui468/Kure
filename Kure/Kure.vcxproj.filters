@@ -138,6 +138,12 @@
     <ClInclude Include="src\Kure\Renderer\VertexArray.h">
       <Filter>src\Kure\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Kure\Scene\Components.h">
+      <Filter>src\Kure\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Kure\Scene\Entity.h">
+      <Filter>src\Kure\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="src\Kure\Scene\Scene.h">
       <Filter>src\Kure\Scene</Filter>
     </ClInclude>
@@ -171,7 +177,6 @@
     <ClInclude Include="vendor\stb\stb_image.h">
       <Filter>vendor\stb</Filter>
     </ClInclude>
-    <ClInclude Include="src\Kure\Scene\Components.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Kure\Core\Application.cpp">
@@ -233,6 +238,9 @@
     </ClCompile>
     <ClCompile Include="src\Kure\Renderer\VertexArray.cpp">
       <Filter>src\Kure\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Kure\Scene\Entity.cpp">
+      <Filter>src\Kure\Scene</Filter>
     </ClCompile>
     <ClCompile Include="src\Kure\Scene\Scene.cpp">
       <Filter>src\Kure\Scene</Filter>
